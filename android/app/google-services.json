@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "941328721411",
+    "project_id": "letsbiz-394c5",
+    "storage_bucket": "letsbiz-394c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941328721411:android:66f954d6d7dbc4fffe1036",
+        "android_client_info": {
+          "package_name": "com.letsbiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941328721411-bqlkit8of5fln1hlp5v1hm3vk0mhjnah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.letsbiz",
+            "certificate_hash": "eebb61f52e032ab14baf64928f1ec1e7f4e2080a"
+          }
+        },
+        {
+          "client_id": "941328721411-3nlkqoaq5gctg1j28msif3c94uut48rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXPpHGo5D5ohmfpYN9j-Sx0-HgNl0fAUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941328721411-3nlkqoaq5gctg1j28msif3c94uut48rr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
