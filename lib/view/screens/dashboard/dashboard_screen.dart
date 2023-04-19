@@ -18,6 +18,7 @@ import 'package:sixam_mart/view/screens/order/order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../helper/route_helper.dart';
 import 'widget/running_order_view_widget.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -213,7 +214,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         children: [
                           _screens[index],
                           Positioned(
-                            bottom: 15,
+                            bottom: 0,
                             child: Container(
                               width: Get.width,
                               child: ResponsiveHelper.isDesktop(context) ? SizedBox()
@@ -225,10 +226,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 shape: CircularNotchedRectangle(),
                                 child: Container(
                                   height: 65,
-                                 margin: EdgeInsets.symmetric(horizontal: 18),
+                                // margin: EdgeInsets.symmetric(horizontal: 18),
                                   decoration: BoxDecoration(
-                                    color: Color(0xff91d3fe),
-                                    borderRadius: BorderRadius.circular(13),
+                                    color: Colors.white,//Color(0xff91d3fe),
+                                    //borderRadius: BorderRadius.circular(13),
                                   ),
                                   child: Row(children: [
                                     BottomNavItem(iconData:  Icons.shopping_cart, isSelected: _pageIndex == 2, onTap: () {
@@ -245,6 +246,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     BottomNavItem(iconData: Icons.menu, isSelected: _pageIndex == 4, onTap: () {
                                       Get.bottomSheet(MenuScreen(), backgroundColor: Colors.transparent, isScrollControlled: true);
                                     }),
+
+                                    BottomNavItem(iconData: Icons.person_outline_outlined, isSelected: _pageIndex == 5, onTap: ()=>Get.toNamed(RouteHelper.getProfileRoute())),
                                   ]),
                                 ),
                               ),

@@ -72,10 +72,10 @@ RxString temptemp="sssssssssssss".obs;
           ? splashController.moduleList.length > 0
               ? GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                    crossAxisCount: 2,
                     mainAxisSpacing: Dimensions.PADDING_SIZE_SMALL,
                     crossAxisSpacing: Dimensions.PADDING_SIZE_SMALL,
-                    childAspectRatio: (1 / 1.3),
+                    childAspectRatio: 1.5,     //bigger the number smaller the size
                   ),
                   padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
                   itemCount: splashController.moduleList.length,
@@ -84,55 +84,52 @@ RxString temptemp="sssssssssssss".obs;
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () => splashController.switchModule(index, true),
-                      child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-
-                            height: 82,
-                            width: 115,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.RADIUS_SMALL),topRight: Radius.circular(Dimensions.RADIUS_SMALL)),
-                            ),
-                            /*decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                   */ /* gradient: LinearGradient(
-                        colors: [Get.isDarkMode?Colors.white:Color(0xffDCF1FA),Theme.of(context).backgroundColor],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter
-                    ),*/ /*
-                    ///////////////swiggy image type
-                    // boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 700 : 200], spreadRadius: 1, blurRadius: 5)],
-                  ),*/
-                            child: ClipRRect(
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.RADIUS_SMALL),topRight: Radius.circular(Dimensions.RADIUS_SMALL)),
-                              child: CustomImage(
-                                image:
-                                    '${splashController.configModel.baseUrls.moduleImageUrl}/${splashController.moduleList[index].icon}',
-                                height: 48,
-                                width: 50,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(20)
+                        ),
+                        child: Stack(
+                          //mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Positioned(
+                              right: 0,
+                              bottom: 0,
+                              child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                                child: CustomImage(
+                                  image:
+                                      '${splashController.configModel.baseUrls.moduleImageUrl}/${splashController.moduleList[index].icon}',
+                                  height: 122,
+                                  width: 110,
+                                ),
                               ),
                             ),
-                          ),
-                          // SizedBox(height: 6),
+                            Positioned(
+                              top: 15,
+                              left: 10,
+                              child: Container(
+                                width: 79,
+                              height: 112,
+                              alignment: Alignment.topCenter,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                              ),
+                              child: Text(
+                                splashController.moduleList[index].moduleName,
+                                textAlign: TextAlign.center,
+                               // overflow: TextOverflow.ellipsis,
+                                style: robotoMedium.copyWith(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white),
+                              ),
+                            ),)
+                            // SizedBox(height: 6),
 
-                          Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                            ),
-                            child: Text(
-                              splashController.moduleList[index].moduleName,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: robotoMedium.copyWith(
-                                  fontSize: 14,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ],
+
+                          ],
+                        ),
                       ),
                     );
 
@@ -570,7 +567,7 @@ RxString temptemp="sssssssssssss".obs;
         child: Image.network("https://freepngimg.com/thumb/grocery/41619-7-groceries-free-download-image-thumb.png"),
       ),*/
 
-      PopularStoreView(isPopular: false, isFeatured: true),
+      //PopularStoreView(isPopular: false, isFeatured: true),
 
    SizedBox(height: 30),
     ]);

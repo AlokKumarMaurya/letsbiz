@@ -97,11 +97,11 @@ class BannerView extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(45),
                         // boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 1, blurRadius: 5)],
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(45),
                         child: GetBuilder<SplashController>(builder: (splashController) {
                           return CustomImage(
                             image: '$_baseUrl/${bannerList[index]}',

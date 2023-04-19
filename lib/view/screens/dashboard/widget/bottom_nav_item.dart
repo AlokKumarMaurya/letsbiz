@@ -15,7 +15,7 @@ class BottomNavItem extends StatelessWidget {
             color: isSelected ?Colors.black : Colors.transparent
         ),
         child: IconButton(
-          icon: Icon(iconData, color: isSelected ?Colors.white : Colors.grey.shade100, size: 25),
+          icon: Icon(iconData, color: isSelected ?Colors.white : Colors.black, size: 25),
           onPressed: onTap,
         ),
       ),
