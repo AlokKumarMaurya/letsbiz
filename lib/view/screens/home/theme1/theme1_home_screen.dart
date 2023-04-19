@@ -312,7 +312,7 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
                                                     width: 20,
                                                     color: Colors.black,
                                                   ),*/
-                                    Icon(
+                                    /*Icon(
                                       locationController
                                           .getUserAddress()
                                           .addressType ==
@@ -327,7 +327,10 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
                                           .location_on,
                                       size: 30,
                                       color: Colors.red,
-                                    ),
+                                    ),*/
+
+                                    Image.asset(
+                                      "assets/image/location_icon.png",width:40,height: 40,),
                                     Column(
                                       crossAxisAlignment:
                                       CrossAxisAlignment
@@ -429,7 +432,7 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
 
                                     //profile image here
 
-                                    InkWell(
+                                   /* InkWell(
                                       onTap: ()=>null,
                                       child: GetBuilder<UserController>(
                                           builder:
@@ -461,7 +464,7 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
                                               alignment:
                                               Alignment
                                                   .center,
-                                              child: ClipOval(
+                                              child:const SizedBox() *//*ClipOval(
                                                   child:
                                                   CustomImage(
                                                     image:
@@ -471,10 +474,10 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
                                                     width: 40,
                                                     fit: BoxFit
                                                         .cover,
-                                                  )),
+                                                  ))*//*,
                                             );
                                           }),
-                                    )
+                                    )*/
                                   ],
                                 );
                               }),
@@ -544,11 +547,11 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
               CategoryView1(),
               ItemCampaignView1(),
               BestReviewedItemView(),
-              PopularStoreView1(isPopular: true, isFeatured: false),
+             // PopularStoreView1(isPopular: true, isFeatured: false),
               PopularItemView1(isPopular: true),
-              PopularStoreView1(isPopular: false, isFeatured: false),
+            //  PopularStoreView1(isPopular: false, isFeatured: false),
 
-              Padding(
+             /* Padding(
                 padding: EdgeInsets.fromLTRB(10, 15, 0, 5),
                 child: Row(children: [
                   Expanded(child: Text(
@@ -575,7 +578,7 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
                     ),
                   ),
                 );
-              }),
+              }),*/
               SizedBox(height: 80,width: 100),
             ]) : ModuleView(splashController: widget.splashController),
           )),

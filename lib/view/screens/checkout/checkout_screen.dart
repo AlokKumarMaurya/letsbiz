@@ -372,9 +372,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 );
                               }
                               orderController.setAddressIndex(index);
-                              //_streetNumberController.text = index == -1 ? locationController.getUserAddress().streetNumber ?? '' : locationController.addressList[index].streetNumber ?? '';
+                             // _streetNumberController.text = index == -1 ? locationController.getUserAddress().streetNumber ?? '' : locationController.addressList[index].streetNumber ?? '';
                               _streetNumberController.text =  locationController.getUserAddress().address/*?? '' : locationController.addressList[index].streetNumber ?? ''*/;
-                              _houseController.text = index == -1 ? locationController.getUserAddress().house ?? '' : locationController.addressList[index].house ?? '';
+                              _houseController.text =/*(_streetNumberController.text+" ")+*/ (index == -1 ? locationController.getUserAddress().house ?? '' : locationController.addressList[index].house ?? '');
                              // _floorController.text = index == -1 ? locationController.getUserAddress().floor ?? '' : locationController.addressList[index].floor ?? '';
                            print("this is _houseController.1text ${locationController.getUserAddress().address}");
                            print("this is _houseController.2text ${locationController.getUserAddress().additionalAddress}");
@@ -384,6 +384,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                            print("this is _houseController.6text ${locationController.getUserAddress().house}");
                            print("this is _houseController.7text ${locationController.getUserAddress().zoneData}");
                            print("this is _streetNumberController8.text ${_streetNumberController.text}");
+                           print("this is _streetNumberController8.text");
                             },
                           ),
                           SizedBox(height: Dimensions.PADDING_SIZE_LARGE),

@@ -9,8 +9,6 @@ import 'package:sixam_mart/controller/wishlist_controller.dart';
 import 'package:sixam_mart/data/model/body/notification_body.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/util/app_constants.dart';
-import 'package:sixam_mart/util/dimensions.dart';
-import 'package:sixam_mart/util/images.dart';
 import 'package:sixam_mart/view/base/no_internet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -69,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> {
     });
 
     Get.find<CartController>().getCartData();
-    _route();
+  _route();
 
   }
 
@@ -134,13 +132,14 @@ class _SplashScreenState extends State<SplashScreen> {
     if(Get.find<LocationController>().getUserAddress() != null && Get.find<LocationController>().getUserAddress().zoneIds == null) {
       Get.find<AuthController>().clearSharedAddress();
     }
-
+print("this is the height of the mobile ${Get.height}");
     return Scaffold(
+      backgroundColor: Color(0xffa1d72f),
       key: _globalKey,
       body: GetBuilder<SplashController>(builder: (splashController) {
         return Container(
           alignment: Alignment.center,
-          height: Get.height,
+          height:Get.height,//737.4545454545455, //
           width: Get.width,
           child: splashController.hasConnection ? /*Column(
             mainAxisSize: MainAxisSize.min,

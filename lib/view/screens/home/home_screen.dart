@@ -18,23 +18,17 @@ import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/images.dart';
 import 'package:sixam_mart/util/styles.dart';
-import 'package:sixam_mart/view/base/item_view.dart';
-import 'package:sixam_mart/view/base/paginated_list_view.dart';
 import 'package:sixam_mart/view/base/web_menu_bar.dart';
 import 'package:sixam_mart/view/screens/home/theme1/theme1_home_screen.dart';
 import 'package:sixam_mart/view/screens/home/web_home_screen.dart';
 import 'package:sixam_mart/view/screens/home/widget/banner_view.dart';
 import 'package:sixam_mart/view/screens/home/widget/category_view.dart';
-import 'package:sixam_mart/view/screens/home/widget/filter_view.dart';
 import 'package:sixam_mart/view/screens/home/widget/item_campaign_view.dart';
 import 'package:sixam_mart/view/screens/home/widget/module_view.dart';
 import 'package:sixam_mart/view/screens/home/widget/popular_item_view.dart';
-import 'package:sixam_mart/view/screens/home/widget/popular_store_view.dart';
 import 'package:sixam_mart/view/screens/parcel/parcel_category_screen.dart';
 
 import '../../../controller/gpsController.dart';
-import '../../base/custom_image.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class HomeScreen extends StatefulWidget {
   static Future<void> loadData(bool reload) async {
@@ -270,8 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       titleSpacing: 0,
                                       title: Container(
                                           child: Row(children: <Widget>[
-
-                                            //removed back ios button in the appBar
+                                        //removed back ios button in the appBar
                                         /*(splashController.module != null &&
                                                 splashController
                                                         .configModel.module ==
@@ -317,90 +310,91 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     width: 20,
                                                     color: Colors.black,
                                                   ),*/
-                                                      Icon(
-                                                        locationController
-                                                                    .getUserAddress()
-                                                                    .addressType ==
-                                                                'home'
-                                                            ? Icons.home_filled
-                                                            : locationController
-                                                                        .getUserAddress()
-                                                                        .addressType ==
-                                                                    'office'
-                                                                ? Icons.work
-                                                                : Icons
-                                                                    .location_on,
-                                                        size: 30,
-                                                        color: Colors.red,
+                                                      /*Icon(
+                                                locationController
+                                                    .getUserAddress()
+                                                    .addressType ==
+                                                    'home'
+                                                    ? Icons.home_filled
+                                                    : locationController
+                                                    .getUserAddress()
+                                                    .addressType ==
+                                                    'office'
+                                                    ? Icons.work
+                                                    : Icons.location_on,
+                                                size: 30,
+                                                color: Colors.red,
+                                              ),*/
+                                                      Image.asset(
+                                                        "assets/image/location_icon.png",
+                                                        width: 40,
+                                                        height: 40,
                                                       ),
                                                       Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Row(children: <
-                                                              Widget>[
-                                                            SizedBox(
-                                                              width: 10,
-                                                            ),
-                                                            GetBuilder<
-                                                                    UserController>(
-                                                                builder:
-                                                                    (userController) {
-                                                              return  userController.userInfoModel!=null? Text(
-                                                                  _isLoggedIn
-                                                                      ? '${userController.userInfoModel.fName} ${userController.userInfoModel.lName}'
-                                                                      : 'guest'
-                                                                          .tr,
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontSize:
-                                                                          18)):const SizedBox();
-                                                            }),
+                                                          Row(
+                                                              children: <
+                                                                  Widget>[
+                                                                SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                GetBuilder<
+                                                                        UserController>(
+                                                                    builder:
+                                                                        (userController) {
+                                                                  return userController
+                                                                              .userInfoModel !=
+                                                                          null
+                                                                      ? Text(
+                                                                          _isLoggedIn
+                                                                              ? '${userController.userInfoModel.fName} ${userController.userInfoModel.lName}'
+                                                                              : 'guest'
+                                                                                  .tr,
+                                                                          style: TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontSize: 18))
+                                                                      : const SizedBox();
+                                                                }),
 
-                                                            SizedBox(width: 5),
-                                                            //onTap: () => Get.toNamed(RouteHelper.getAccessLocationRoute('home'))
-                                                            Icon(
-                                                              Icons
-                                                                  .arrow_drop_down_sharp,
-                                                              color:
-                                                                  Colors.black,
-                                                            ),
-                                                            SizedBox(width: 5),
-                                                            GetBuilder<GpsController>(
-                                                              init: GpsController(),
-                                                              builder: (gpsController) {
-                                                                return InkWell(
-                                                                  onTap:() async => AppSettings.openLocationSettings(),
-                                                                  child:Obx(()=> Container(
-                                                                    padding:
-                                                                        const EdgeInsets
-                                                                            .all(5),
-                                                                    decoration: BoxDecoration(
-                                                                        color: gpsController.isLocationEnabled.value?Colors.green:Colors.red,
-                                                                        borderRadius:
-                                                                            BorderRadius
-                                                                                .circular(
-                                                                                    8)),
-                                                                    child: Text(
-                                                                      gpsController.isLocationEnabled.value?"GPS ON":"GPS is off",
-                                                                      style:
-                                                                      TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize: 12,
-                                                                      ),
-                                                                    ),
-                                                                    )
-                                                                  ),
-                                                                );
-                                                              }
-                                                            )
-                                                          ]),
+                                                                SizedBox(
+                                                                    width: 5),
+                                                                //onTap: () => Get.toNamed(RouteHelper.getAccessLocationRoute('home'))
+                                                                Icon(
+                                                                  Icons
+                                                                      .arrow_drop_down_sharp,
+                                                                  color: Colors
+                                                                      .black,
+                                                                ),
+                                                                SizedBox(
+                                                                    width: 5),
+                                                                GetBuilder<
+                                                                        GpsController>(
+                                                                    init:
+                                                                        GpsController(),
+                                                                    builder:
+                                                                        (gpsController) {
+                                                                      return InkWell(
+                                                                        onTap: () async =>
+                                                                            AppSettings.openLocationSettings(),
+                                                                        child: Obx(() =>
+                                                                            Container(
+                                                                              padding: const EdgeInsets.all(5),
+                                                                              decoration: BoxDecoration(color: gpsController.isLocationEnabled.value ? Colors.green : Colors.red, borderRadius: BorderRadius.circular(8)),
+                                                                              child: Text(
+                                                                                gpsController.isLocationEnabled.value ? "GPS ON" : "GPS is off",
+                                                                                style: TextStyle(
+                                                                                  color: Colors.white,
+                                                                                  fontSize: 12,
+                                                                                ),
+                                                                              ),
+                                                                            )),
+                                                                      );
+                                                                    })
+                                                              ]),
                                                           Row(
                                                             children: [
                                                               SizedBox(
@@ -434,52 +428,66 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                                       //profile image here
 
-                                                      InkWell(
-                                                        onTap: ()=>null,
-                                                        child: GetBuilder<UserController>(
-                                                            builder:
-                                                                (userController) {
-                                                          return (_isLoggedIn &&
-                                                                  userController
-                                                                          .userInfoModel ==
-                                                                      null)
-                                                              ? Center(
-                                                                  child:
-                                                                      CircularProgressIndicator())
-                                                              : Container(
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    // color: Color(0xff1167b1),
-                                                                    image: DecorationImage(
-                                                                        image: AssetImage(
-                                                                            "assets/image/appBg.png"),
-                                                                        fit: BoxFit
-                                                                            .fill),
-                                                                    border: Border.all(
-                                                                        width: 2,
-                                                                        color: Theme.of(
-                                                                                context)
-                                                                            .cardColor),
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                  ),
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  child: ClipOval(
-                                                                      child:
-                                                                          CustomImage(
-                                                                    image:
-                                                                        '${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}'
-                                                                        '/${(userController.userInfoModel != null && _isLoggedIn) ? userController.userInfoModel.image : ''}',
-                                                                    height: 40,
-                                                                    width: 40,
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                  )),
-                                                                );
-                                                        }),
-                                                      )
+                                                      /* InkWell(
+                                                onTap: () => null,
+                                                child: GetBuilder<
+                                                    UserController>(
+                                                    builder:
+                                                        (userController) {
+                                                      return (_isLoggedIn &&
+                                                          userController
+                                                              .userInfoModel ==
+                                                              null)
+                                                          ? Center(
+                                                          child:
+                                                          CircularProgressIndicator())
+                                                          : Container(
+                                                        decoration:
+                                                        BoxDecoration(
+                                                          // color: Color(0xff1167b1),
+                                                          image: DecorationImage(
+                                                              image: AssetImage(
+                                                                  "assets/image/appBg.png"),
+                                                              fit: BoxFit
+                                                                  .fill),
+                                                          border: Border.all(
+                                                              width: 2,
+                                                              color: Theme
+                                                                  .of(
+                                                                  context)
+                                                                  .cardColor),
+                                                          shape: BoxShape
+                                                              .circle,
+                                                        ),
+                                                        alignment:
+                                                        Alignment
+                                                            .center,
+                                                        child: ClipOval(
+                                                            child: const SizedBox()
+                                                          */ /*CustomImage(
+                                                              image:
+                                                              '${Get
+                                                                  .find<
+                                                                  SplashController>()
+                                                                  .configModel
+                                                                  .baseUrls
+                                                                  .customerImageUrl}'
+                                                                  '/${(userController
+                                                                  .userInfoModel !=
+                                                                  null &&
+                                                                  _isLoggedIn)
+                                                                  ? userController
+                                                                  .userInfoModel
+                                                                  .image
+                                                                  : ''}',
+                                                              height: 40,
+                                                              width: 40,
+                                                              fit: BoxFit
+                                                                  .cover,
+                                                            )*/ /*),
+                                                      );
+                                                    }),
+                                              )*/
                                                     ],
                                                   );
                                                 }),
@@ -572,93 +580,94 @@ class _HomeScreenState extends State<HomeScreen> {
                                               children: [
                                                   BannerView(isFeatured: false),
                                                   CategoryView(),
-                                                  PopularStoreView(
-                                                      isPopular: true,
-                                                      isFeatured: false),
+                                                  /* PopularStoreView(
+                                    isPopular: true,
+                                    isFeatured: false),*/
                                                   ItemCampaignView(),
                                                   PopularItemView(
                                                       isPopular: true),
-                                                  PopularStoreView(
-                                                      isPopular: false,
-                                                      isFeatured: false),
+                                                  /*PopularStoreView(
+                                    isPopular: false,
+                                    isFeatured: false),*/
                                                   PopularItemView(
                                                       isPopular: false),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            10, 15, 0, 5),
-                                                    child: Row(children: [
-                                                      Expanded(
-                                                          child: Text(
-                                                        Get.find<SplashController>()
-                                                                .configModel
-                                                                .moduleConfig
-                                                                .module
-                                                                .showRestaurantText
-                                                            ? 'all_restaurants'
-                                                                .tr
-                                                            : 'all_stores'.tr,
-                                                        style: robotoMedium.copyWith(
-                                                            fontSize: Dimensions
-                                                                .fontSizeLarge),
-                                                      )),
-                                                      FilterView(),
-                                                    ]),
-                                                  ),
-                                                  GetBuilder<StoreController>(
-                                                      builder:
-                                                          (storeController) {
-                                                    return PaginatedListView(
-                                                      scrollController:
-                                                          _scrollController,
-                                                      totalSize: storeController
-                                                                  .storeModel !=
-                                                              null
-                                                          ? storeController
-                                                              .storeModel
-                                                              .totalSize
-                                                          : null,
-                                                      offset: storeController
-                                                                  .storeModel !=
-                                                              null
-                                                          ? storeController
-                                                              .storeModel.offset
-                                                          : null,
-                                                      onPaginate: (int
-                                                              offset) async =>
-                                                          await storeController
-                                                              .getStoreList(
-                                                                  offset,
-                                                                  false),
-                                                      itemView: ItemsView(
-                                                        isStore: true,
-                                                        items: null,
-                                                        stores: storeController
-                                                                    .storeModel !=
-                                                                null
-                                                            ? storeController
-                                                                .storeModel
-                                                                .stores
-                                                            : null,
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                          horizontal: ResponsiveHelper
-                                                                  .isDesktop(
-                                                                      context)
-                                                              ? Dimensions
-                                                                  .PADDING_SIZE_EXTRA_SMALL
-                                                              : Dimensions
-                                                                  .PADDING_SIZE_SMALL,
-                                                          vertical: ResponsiveHelper
-                                                                  .isDesktop(
-                                                                      context)
-                                                              ? Dimensions
-                                                                  .PADDING_SIZE_EXTRA_SMALL
-                                                              : 0,
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }),
+                                                  /*Padding(
+                                  padding:
+                                  EdgeInsets.fromLTRB(
+                                      10, 15, 0, 5),
+                                  child: Row(children: [
+                                    Expanded(
+                                        child: Text(
+                                          Get
+                                              .find<SplashController>()
+                                              .configModel
+                                              .moduleConfig
+                                              .module
+                                              .showRestaurantText
+                                              ? 'all_restaurants'
+                                              .tr
+                                              : 'all_stores'.tr,
+                                          style: robotoMedium.copyWith(
+                                              fontSize: Dimensions
+                                                  .fontSizeLarge),
+                                        )),
+                                    FilterView(),
+                                  ]),
+                                ),*/
+                                                  /* GetBuilder<StoreController>(
+                                    builder:
+                                        (storeController) {
+                                      return PaginatedListView(
+                                        scrollController:
+                                        _scrollController,
+                                        totalSize: storeController
+                                            .storeModel !=
+                                            null
+                                            ? storeController
+                                            .storeModel
+                                            .totalSize
+                                            : null,
+                                        offset: storeController
+                                            .storeModel !=
+                                            null
+                                            ? storeController
+                                            .storeModel.offset
+                                            : null,
+                                        onPaginate: (int
+                                        offset) async =>
+                                        await storeController
+                                            .getStoreList(
+                                            offset,
+                                            false),
+                                        itemView: ItemsView(
+                                          isStore: true,
+                                          items: null,
+                                          stores: storeController
+                                              .storeModel !=
+                                              null
+                                              ? storeController
+                                              .storeModel
+                                              .stores
+                                              : null,
+                                          padding: EdgeInsets
+                                              .symmetric(
+                                            horizontal: ResponsiveHelper
+                                                .isDesktop(
+                                                context)
+                                                ? Dimensions
+                                                .PADDING_SIZE_EXTRA_SMALL
+                                                : Dimensions
+                                                .PADDING_SIZE_SMALL,
+                                            vertical: ResponsiveHelper
+                                                .isDesktop(
+                                                context)
+                                                ? Dimensions
+                                                .PADDING_SIZE_EXTRA_SMALL
+                                                : 0,
+                                          ),
+                                        ),
+                                      );
+                                    }),*/
                                                   SizedBox(
                                                       height: 30, width: 100)
                                                 ])

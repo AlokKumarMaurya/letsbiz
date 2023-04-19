@@ -92,8 +92,11 @@ class CampaignController extends GetxController implements GetxService {
       'Authorization': 'Bearer $token',
     });//campaignRepo.getCampaignDetails(campaignID: campaignID.toString(),moduleId: moduleid);
     if (response.statusCode == 200) {
-      debugPrint("testetstetst  ${response.body}");
-      _campaign = BasicCampaignModel.fromJson(response.body);
+     try{
+       debugPrint("testetstetst  ${response.body}");
+       _campaign = BasicCampaignModel.fromJson(response.body);
+     }catch(e){
+     }
     } else {
       ApiChecker.checkApi(response);
     }
