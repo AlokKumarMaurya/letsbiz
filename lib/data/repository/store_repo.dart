@@ -1,12 +1,10 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sixam_mart/data/api/api_client.dart';
 import 'package:sixam_mart/util/app_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 
 import '../../controller/campaign_controller.dart';
 import '../model/response/address_model.dart';
@@ -35,9 +33,9 @@ class StoreRepo {
     SharedPreferences temp=Get.find();
     AddressModel _addressModel;
     _addressModel = AddressModel.fromJson(jsonDecode(temp.getString(AppConstants.USER_ADDRESS)));
-    String token=await temp.getString(AppConstants.TOKEN);
+    String token= temp.getString(AppConstants.TOKEN);
     publicModuleId!=null? ApiClient(appBaseUrl: AppConstants.BASE_URL,sharedPreferences: temp).updateHeader(token, _addressModel.zoneIds, "en",int.parse(publicModuleId), _addressModel.latitude, _addressModel.longitude):null;
-    return await publicModuleId!=null? apiClient.getData('${AppConstants.STORE_DETAILS_URI}$storeID',headers: {
+    return  publicModuleId!=null? apiClient.getData('${AppConstants.STORE_DETAILS_URI}$storeID',headers: {
       "zoneId": jsonEncode(_addressModel.zoneIds),
       "X-localization": "en",
       "latitude": _addressModel.latitude,
@@ -51,9 +49,9 @@ class StoreRepo {
     SharedPreferences temp=Get.find();
     AddressModel _addressModel;
     _addressModel = AddressModel.fromJson(jsonDecode(temp.getString(AppConstants.USER_ADDRESS)));
-    String token=await temp.getString(AppConstants.TOKEN);
+    String token= temp.getString(AppConstants.TOKEN);
     publicModuleId!=null? ApiClient(appBaseUrl: AppConstants.BASE_URL,sharedPreferences: temp).updateHeader(token, _addressModel.zoneIds, "en",int.parse(publicModuleId), _addressModel.latitude, _addressModel.longitude):null;
-    return await publicModuleId !=null ?apiClient.getData('${AppConstants.STORE_ITEM_URI}?store_id=$storeID&category_id=$categoryID&offset=$offset&limit=10&type=$type',headers: {
+    return  publicModuleId !=null ?apiClient.getData('${AppConstants.STORE_ITEM_URI}?store_id=$storeID&category_id=$categoryID&offset=$offset&limit=10&type=$type',headers: {
       "zoneId": jsonEncode(_addressModel.zoneIds),
       "X-localization": "en",
       "latitude": _addressModel.latitude,

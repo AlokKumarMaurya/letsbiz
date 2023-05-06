@@ -2,7 +2,6 @@ import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/view/base/rating_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ItemShimmer extends StatelessWidget {
   final bool isEnabled;

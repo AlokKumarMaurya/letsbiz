@@ -3,7 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sixam_mart/data/api/api_client.dart';
 import 'package:sixam_mart/util/app_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:get/get.dart';
 
 import '../model/response/address_model.dart';
@@ -42,9 +41,9 @@ class CampaignRepo {
 
 
   Future<Response> getCampaignDetails({@required String campaignID ,@required String moduleId}) async {
-    AddressModel _addressModel;
+    //AddressModel _addressModel;
     SharedPreferences temp=Get.find();
-    var aa=await temp.getString(AppConstants.LONGITUDE);
+    var aa= temp.getString(AppConstants.LONGITUDE);
     print("hurray we did it $aa");
     return await apiClient.getData('${AppConstants.BASIC_CAMPAIGN_DETAILS_URI}$campaignID',
         /*,headers: {
@@ -76,7 +75,7 @@ class CampaignRepo {
     SharedPreferences temp=Get.find();
     AddressModel _addressModel;
     _addressModel = AddressModel.fromJson(jsonDecode(temp.getString(AppConstants.USER_ADDRESS)));
-    String token=await temp.getString(AppConstants.TOKEN);
+    String token= temp.getString(AppConstants.TOKEN);
     return await /*apiClient.getData*/GetConnect().get(AppConstants.BASE_URL+AppConstants.ITEM_CAMPAIGN_URI,headers: {
       "zoneId": jsonEncode(_addressModel.zoneIds),
       "X-localization": "en",

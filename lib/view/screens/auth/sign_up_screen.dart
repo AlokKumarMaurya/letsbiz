@@ -12,9 +12,6 @@ import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/view/base/custom_button.dart';
 import 'package:sixam_mart/view/base/custom_snackbar.dart';
 import 'package:sixam_mart/view/base/custom_text_field.dart';
-import 'package:sixam_mart/view/base/footer_view.dart';
-import 'package:sixam_mart/view/base/menu_drawer.dart';
-import 'package:sixam_mart/view/base/web_menu_bar.dart';
 import 'package:sixam_mart/view/screens/auth/widget/code_picker_widget.dart';
 import 'package:sixam_mart/view/screens/auth/widget/condition_check_box.dart';
 import 'package:sixam_mart/view/screens/auth/widget/guest_button.dart';
@@ -64,13 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Container(
             padding: ResponsiveHelper.isDesktop(context) ? EdgeInsets.zero : EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
            // height: Get.height,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  "assets/image/appBg.png"
-                ),
-                fit: BoxFit.fill
-              )
+            decoration: BoxDecoration(color: Colors.white
             ),
             child: Container(
               width: context.width > 700 ? 700 : context.width,

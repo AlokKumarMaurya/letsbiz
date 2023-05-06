@@ -8,7 +8,6 @@ import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/view/base/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sixam_mart/view/base/footer_view.dart';
 import 'package:sixam_mart/view/base/menu_drawer.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
@@ -42,13 +41,7 @@ class _HtmlViewerScreenState extends State<HtmlViewerScreen> {
       body: GetBuilder<SplashController>(builder: (splashController) {
         return Center(
           child: splashController.htmlText != null ? Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  "assets/image/appBg.png"
-                ),
-                fit: BoxFit.fill
-              )
+            decoration: BoxDecoration(color: Colors.white
             ),
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),

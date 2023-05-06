@@ -1,54 +1,20 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
-import 'package:sixam_mart/controller/auth_controller.dart';
-import 'package:sixam_mart/controller/banner_controller.dart';
-import 'package:sixam_mart/controller/banner_controller.dart';
-import 'package:sixam_mart/controller/item_controller.dart';
-import 'package:sixam_mart/controller/location_controller.dart';
-import 'package:sixam_mart/controller/location_controller.dart';
-import 'package:sixam_mart/controller/splash_controller.dart';
-import 'package:sixam_mart/controller/splash_controller.dart';
-import 'package:sixam_mart/data/model/response/address_model.dart';
-import 'package:sixam_mart/data/model/response/basic_campaign_model.dart';
-import 'package:sixam_mart/data/model/response/item_model.dart';
-import 'package:sixam_mart/data/model/response/module_model.dart';
-import 'package:sixam_mart/data/model/response/store_model.dart';
-import 'package:sixam_mart/data/model/response/zone_response_model.dart';
-import 'package:sixam_mart/helper/responsive_helper.dart';
-import 'package:sixam_mart/helper/route_helper.dart';
-import 'package:sixam_mart/util/dimensions.dart';
-import 'package:sixam_mart/util/dimensions.dart';
-import 'package:sixam_mart/util/styles.dart';
-import 'package:sixam_mart/view/base/custom_image.dart';
-import 'package:sixam_mart/view/base/custom_image.dart';
-import 'package:sixam_mart/view/base/custom_loader.dart';
-import 'package:sixam_mart/view/base/custom_snackbar.dart';
-import 'package:sixam_mart/view/base/title_widget.dart';
-import 'package:sixam_mart/view/screens/address/widget/address_widget.dart';
-import 'package:sixam_mart/view/screens/home/widget/banner_view.dart';
-import 'package:sixam_mart/view/screens/home/widget/basic_campaign_view.dart';
-import 'package:sixam_mart/view/screens/home/widget/popular_store_view.dart';
-import 'package:sixam_mart/view/screens/store/store_screen.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-import 'package:sixam_mart/controller/campaign_controller.dart';
-import '../../../../controller/item_controller.dart';
-import '../../../../data/model/response/basic_campaign_model.dart';
-import '../../../../data/model/response/item_model.dart';
-import '../../../../data/model/response/module_model.dart';
-import '../../../../data/model/response/zone_response_model.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sixam_mart/data/repository/campaign_repo.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:sixam_mart/controller/banner_controller.dart';
+import 'package:sixam_mart/controller/campaign_controller.dart';
+import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/data/api/api_client.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sixam_mart/data/model/response/module_model.dart';
+import 'package:sixam_mart/data/repository/campaign_repo.dart';
+import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/util/app_constants.dart';
+import 'package:sixam_mart/util/dimensions.dart';
+import 'package:sixam_mart/view/base/custom_image.dart';
+import 'package:sixam_mart/view/screens/home/widget/banner_view.dart';
 
 import '../../store/campaign_screen.dart';
-import '../theme1/banner_view1.dart';
 
 //SharedPreferences sharedPreferences=new Sha;
 class ModuleView extends StatelessWidget {
@@ -56,8 +22,12 @@ class ModuleView extends StatelessWidget {
 
   ModuleView({@required this.splashController});
 
- CampaignController _campaignController=Get.put(CampaignController(campaignRepo:CampaignRepo(apiClient: ApiClient(appBaseUrl: AppConstants.BASE_URL,sharedPreferences: Get.find() )) ));
-RxString temptemp="sssssssssssss".obs;
+  CampaignController _campaignController = Get.put(CampaignController(
+      campaignRepo: CampaignRepo(
+          apiClient: ApiClient(
+              appBaseUrl: AppConstants.BASE_URL,
+              sharedPreferences: Get.find()))));
+  RxString temptemp = "sssssssssssss".obs;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +45,7 @@ RxString temptemp="sssssssssssss".obs;
                     crossAxisCount: 2,
                     mainAxisSpacing: Dimensions.PADDING_SIZE_SMALL,
                     crossAxisSpacing: Dimensions.PADDING_SIZE_SMALL,
-                    childAspectRatio: 1.5,     //bigger the number smaller the size
+                    childAspectRatio: 1.65, //bigger the number smaller the size
                   ),
                   padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
                   itemCount: splashController.moduleList.length,
@@ -86,32 +56,32 @@ RxString temptemp="sssssssssssss".obs;
                       onTap: () => splashController.switchModule(index, true),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.circular(20)
-                        ),
+                            /*color: Colors.primaries[
+                                Random().nextInt(Colors.primaries.length)],*/
+                            borderRadius: BorderRadius.circular(20)),
                         child: Stack(
                           //mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Positioned(
-                              right: 0,
-                              bottom: 0,
+                              /* right: 0,
+                              bottom: -15,*/
                               child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20),
                                 child: CustomImage(
                                   image:
                                       '${splashController.configModel.baseUrls.moduleImageUrl}/${splashController.moduleList[index].icon}',
                                   height: 122,
-                                  width: 110,
+                                  width: double.infinity,
                                 ),
                               ),
                             ),
-                            Positioned(
+                            /*Positioned(
                               top: 15,
                               left: 10,
                               child: Container(
-                                width: 79,
+                                width: 85,
                               height: 112,
-                              alignment: Alignment.topCenter,
+                              alignment: Alignment.topLeft,
                               decoration: BoxDecoration(
                                 color: Colors.transparent,
                               ),
@@ -124,10 +94,8 @@ RxString temptemp="sssssssssssss".obs;
                                     fontWeight: FontWeight.w400,
                                     color: Colors.white),
                               ),
-                            ),)
+                            ),)*/
                             // SizedBox(height: 6),
-
-
                           ],
                         ),
                       ),
@@ -230,110 +198,116 @@ RxString temptemp="sssssssssssss".obs;
       ),
 
       ///Place add banner here
-     Get.find<CampaignController>().allCampianList.value.length>0? Container(
-        padding:EdgeInsets.symmetric(horizontal: 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
+      Get.find<CampaignController>().allCampianList.length > 0
+          ? Container(
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    height: 3,
-                    width: Get.width/5.5,
-                    color: Colors.black,
-                  ),
-                  SizedBox(width: 5,),
-                  Text(
-                    "FAVOURITE OFFERS",
-                    style: GoogleFonts.montserrat(
-                      textStyle: TextStyle(
+                  Row(
+                    children: [
+                      Container(
+                        height: 3,
+                        width: Get.width / 5.5,
                         color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w800
-                      )
-                    )
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text("FAVOURITE OFFERS",
+                          style: GoogleFonts.montserrat(
+                              textStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w800))),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Container(
+                        height: 3,
+                        width: Get.width / 5.5,
+                        color: Colors.black,
+                      ),
+                    ],
                   ),
-                  SizedBox(width: 5,),
-                  Container(
-                    height: 3,
-                    width: Get.width/5.5,
-                    color: Colors.black,
-                  ),
-                ],
-              ),
-              Text("LOCALLY !",style: GoogleFonts.montserrat(
-                  textStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.5
+                  Text(
+                    "LOCALLY !",
+                    style: GoogleFonts.montserrat(
+                        textStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 1.5)),
                   )
-              ),)
-            ],
-          )):SizedBox(),
+                ],
+              ))
+          : SizedBox(),
       SizedBox(
         height: 15,
       ),
 
-
-
-
-///campaion here**********************
+      ///campaion here**********************
       /*SizedBox(
         height: 200,
         child: BasicCampaignView(campaignController: _campaignController),
       ),*/
 
       //BannerView1(isFeatured: false),
-       Obx((){
-         debugPrint(temptemp.value);
-         return SizedBox(height:200 ,child: GetBuilder<CampaignController>(builder: (bannerController){
-           //List<String> bannerList = false ? bannerController.featuredBannerList : bannerController.bannerImageList;
-           //List<dynamic> bannerDataList = false ? bannerController.featuredBannerDataList : bannerController.bannerDataList;
+      Obx(() {
+        debugPrint(temptemp.value);
+        return SizedBox(
+          height: 200,
+          child: GetBuilder<CampaignController>(builder: (bannerController) {
+            //List<String> bannerList = false ? bannerController.featuredBannerList : bannerController.bannerImageList;
+            //List<dynamic> bannerDataList = false ? bannerController.featuredBannerDataList : bannerController.bannerDataList;
 
+            debugPrint(
+                "this is in the build method ${bannerController.allCampianList}");
 
+            return bannerController.allCampianList != null
+                ? ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: bannerController.allCampianList.length,
+                    itemBuilder: (context, index) {
+                      // String _baseUrl = bannerDataList[index] is BasicCampaignModel ? Get.find<SplashController>()
+                      //   .configModel.baseUrls.campaignImageUrl  : Get.find<SplashController>().configModel.baseUrls.bannerImageUrl;
+                      // debugPrint("this is the url------$_baseUrl/${bannerList[index]}");
 
-
-           debugPrint("this is in the build methid ${bannerController.allCampianList}");
-
-           return bannerController.allCampianList.value !=null? ListView.builder(
-             shrinkWrap: true,
-             scrollDirection: Axis.horizontal,
-             itemCount: bannerController.allCampianList.value.length,
-             itemBuilder: (context, index) {
-
-
-
-               // String _baseUrl = bannerDataList[index] is BasicCampaignModel ? Get.find<SplashController>()
-               //   .configModel.baseUrls.campaignImageUrl  : Get.find<SplashController>().configModel.baseUrls.bannerImageUrl;
-               // debugPrint("this is the url------$_baseUrl/${bannerList[index]}");
-
-               return /*bannerDataList[index] is BasicCampaignModel ?Container(
+                      return /*bannerDataList[index] is BasicCampaignModel ?Container(
               width: 40,
               height: 40,
               color:Colors.pink,
-              ) :*/Padding(
-                 padding: const EdgeInsets.only(right: 18.0),
-                 child: InkWell(
-                   onTap: () async {
+              ) :*/
+                          Padding(
+                        padding: const EdgeInsets.only(right: 18.0),
+                        child: InkWell(
+                          onTap: () async {
+                            if (Get.find<SplashController>().moduleList !=
+                                null) {
+                              for (ModuleModel module
+                                  in Get.find<SplashController>().moduleList) {
+                                if (module.id ==
+                                    bannerController
+                                        .allCampianList[index].moduleId) {
+                                  Get.find<SplashController>()
+                                      .setModule(module);
+                                  break;
+                                }
+                              }
+                            }
 
-                     if( Get.find<SplashController>().moduleList != null) {
-                       for(ModuleModel module in Get.find<SplashController>().moduleList) {
-                         if(module.id == bannerController.allCampianList.value[index].moduleId) {
-                           Get.find<SplashController>().setModule(module);
-                           break;
-                         }
-                       }
-                     }
-
-
-
-                  //   Get.find<SplashController>().setModule(ModuleModel(id:bannerController.allCampianList[index].moduleId, moduleName: _module.moduleName, moduleType: _module.moduleType, themeId: _module.themeId, storesCount: _module.storesCount));
-                     Get.to(CampaignScreen(modalId: bannerController.allCampianList.value[index].moduleId.toString(),campainIIID:bannerController.allCampianList.value[index]));
-                     //bannerController.getBasicCampaignDetails(campaignID:bannerController.allCampianList[index].campaignId , moduleid:bannerController.allCampianList[index].moduleId.toString() );
-                     //Get.toNamed(RouteHelper.getBasicCampaignRoute(bannerController.basicCampaignList[index]));
-                     /*    if(bannerDataList[index] is Item) {
+                            //   Get.find<SplashController>().setModule(ModuleModel(id:bannerController.allCampianList[index].moduleId, moduleName: _module.moduleName, moduleType: _module.moduleType, themeId: _module.themeId, storesCount: _module.storesCount));
+                            Get.to(CampaignScreen(
+                                modalId: bannerController
+                                    .allCampianList[index].moduleId
+                                    .toString(),
+                                campainIIID:
+                                    bannerController.allCampianList[index]));
+                            //bannerController.getBasicCampaignDetails(campaignID:bannerController.allCampianList[index].campaignId , moduleid:bannerController.allCampianList[index].moduleId.toString() );
+                            //Get.toNamed(RouteHelper.getBasicCampaignRoute(bannerController.basicCampaignList[index]));
+                            /*    if(bannerDataList[index] is Item) {
                       Item _item = bannerDataList[index];
                       Get.find<ItemController>().navigateToItemPage(_item, context);
                     }else if(bannerDataList[index] is Store) {
@@ -362,36 +336,46 @@ RxString temptemp="sssssssssssss".obs;
                         showCustomSnackBar('unable_to_found_url'.tr);
                       }
                     }*/
-                   },
-                   child: Container(
-                     margin:index==0?EdgeInsets.only(right: 10,left: 10): EdgeInsets.only(right: 10),
-                     width: Get.width/2.5,
-                     decoration: BoxDecoration(
-                       color: Theme.of(context).dividerColor,
-                       // borderRadius: BorderRadius.circular(20),
-                       boxShadow: [BoxShadow(color: Colors.grey
+                          },
+                          child: Container(
+                            margin: index == 0
+                                ? EdgeInsets.only(right: 10, left: 10)
+                                : EdgeInsets.only(right: 10),
+                            width: Get.width / 2.5,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).dividerColor,
+                              // borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey
 
-                           /*[Get.isDarkMode ? 800 : 200]*/
-                           , spreadRadius: 1, blurRadius: 15)],
-                     ),
-                     child: ClipRRect(
-                       // borderRadius: BorderRadius.circular(20),
-                       child: GetBuilder<SplashController>(builder: (splashController) {
-                         return CustomImage(
-                           width: Get.width/2.6,
-                           image:bannerController.allCampianList.value[index].image,
-                           fit: BoxFit.cover,
-                         );
-                       }),
-                     ),
-                   ),
-                 ),
-               );
-             },
-           ):SizedBox();
-         }
-         ),);
-       }),
+                                    /*[Get.isDarkMode ? 800 : 200]*/
+                                    ,
+                                    spreadRadius: 1,
+                                    blurRadius: 15)
+                              ],
+                            ),
+                            child: ClipRRect(
+                              // borderRadius: BorderRadius.circular(20),
+                              child: GetBuilder<SplashController>(
+                                  builder: (splashController) {
+                                return CustomImage(
+                                  width: Get.width / 2.6,
+                                  image: bannerController
+                                      .allCampianList[index].image,
+                                  fit: BoxFit.cover,
+                                );
+                              }),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                : SizedBox();
+          }),
+        );
+      }),
 
       /*GetBuilder<BannerController>(builder: (bannerController) {
         List<String> bannerList = false
@@ -521,13 +505,13 @@ RxString temptemp="sssssssssssss".obs;
                                                 .withOpacity(0.5)),
                               );
 
-                              *//**/
+                              */ /**/
       /*TabPageSelectorIndicator(
                   backgroundColor: index == bannerController.currentIndex ? Theme.of(context).primaryColor
                       : Theme.of(context).primaryColor.withOpacity(0.5),
                   borderColor: Theme.of(context).backgroundColor,
                   size: index == bannerController.currentIndex ? 10 : 7,
-                );*//**/
+                );*/ /**/
       /*
                             }).toList(),
                           ),*/
@@ -569,7 +553,7 @@ RxString temptemp="sssssssssssss".obs;
 
       //PopularStoreView(isPopular: false, isFeatured: true),
 
-   SizedBox(height: 30),
+      SizedBox(height: 30),
     ]);
   }
 }

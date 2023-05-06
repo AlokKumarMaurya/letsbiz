@@ -80,7 +80,7 @@ class CampaignController extends GetxController implements GetxService {
     _addressModel = AddressModel.fromJson(jsonDecode(temp.getString(AppConstants.USER_ADDRESS)));
     _campaign = null;
 
-    String token=await temp.getString(AppConstants.TOKEN);
+    String token= temp.getString(AppConstants.TOKEN);
    Response response = await GetConnect().get("https://panel.letsbiz.app/api/v1/campaigns/basic-campaign-details?basic_campaign_id=$campaignID",headers: {
 //Content-Type: application/json
 //charset:UTF-8
@@ -135,7 +135,7 @@ class CampaignController extends GetxController implements GetxService {
   Future<void> getAllCampaignList()async{
     Response response=await campaignRepo.getAllCampaignList();
     if(response.statusCode==200){
-      allCampianList.value.clear();
+      allCampianList.clear();
 debugPrint(response.body.toString());
 debugPrint("this is the response of the get all campian list modal");
 AllCampaignListModal modal=AllCampaignListModal.fromJson(response.body);

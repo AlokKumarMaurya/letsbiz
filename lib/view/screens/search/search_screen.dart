@@ -57,7 +57,7 @@ class _SearchScreenState extends State<SearchScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: Theme.of(context).dividerColor,
+        backgroundColor: Colors.white,
         appBar: ResponsiveHelper.isDesktop(context) ? WebMenuBar() : null,
         endDrawer: MenuDrawer(),
         body: SafeArea(child: Padding(

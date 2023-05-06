@@ -11,11 +11,12 @@ class BottomNavItem extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: isSelected ?Colors.black : Colors.transparent
+          shape: BoxShape.circle,
+          // color: isSelected ?Colors.black : Colors.transparent
         ),
         child: IconButton(
-          icon: Icon(iconData, color: isSelected ?Colors.white : Colors.black, size: 25),
+          icon: Icon(iconData,
+              color: isSelected ? Colors.green : Colors.grey, size: 25),
           onPressed: onTap,
         ),
       ),

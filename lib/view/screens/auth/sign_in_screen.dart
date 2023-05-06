@@ -6,7 +6,6 @@ import 'package:country_code_picker/country_code.dart';
 import 'package:sixam_mart/controller/auth_controller.dart';
 import 'package:sixam_mart/controller/localization_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
-import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/images.dart';
@@ -14,9 +13,6 @@ import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/view/base/custom_button.dart';
 import 'package:sixam_mart/view/base/custom_snackbar.dart';
 import 'package:sixam_mart/view/base/custom_text_field.dart';
-import 'package:sixam_mart/view/base/footer_view.dart';
-import 'package:sixam_mart/view/base/menu_drawer.dart';
-import 'package:sixam_mart/view/base/web_menu_bar.dart';
 import 'package:sixam_mart/view/screens/auth/widget/code_picker_widget.dart';
 import 'package:sixam_mart/view/screens/auth/widget/condition_check_box.dart';
 import 'package:sixam_mart/view/screens/auth/widget/guest_button.dart';
@@ -94,13 +90,7 @@ class _SignInScreenState extends State<SignInScreen> {
         body: SafeArea(child: Container(
           alignment: Alignment.center,
           height: Get.height,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                      "assets/image/appBg.png"
-                  ),
-                  fit: BoxFit.fill
-              )
+          decoration: BoxDecoration(color: Colors.white
           ),
           child: Scrollbar(
             child: SingleChildScrollView(

@@ -1,4 +1,3 @@
-import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,7 +15,6 @@ import 'package:sixam_mart/controller/user_controller.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/util/dimensions.dart';
-import 'package:sixam_mart/util/images.dart';
 import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/view/base/web_menu_bar.dart';
 import 'package:sixam_mart/view/screens/home/theme1/theme1_home_screen.dart';
@@ -27,8 +25,6 @@ import 'package:sixam_mart/view/screens/home/widget/item_campaign_view.dart';
 import 'package:sixam_mart/view/screens/home/widget/module_view.dart';
 import 'package:sixam_mart/view/screens/home/widget/popular_item_view.dart';
 import 'package:sixam_mart/view/screens/parcel/parcel_category_screen.dart';
-
-import '../../../controller/gpsController.dart';
 
 class HomeScreen extends StatefulWidget {
   static Future<void> loadData(bool reload) async {
@@ -92,6 +88,17 @@ class _HomeScreenState extends State<HomeScreen> {
           false,
           updateInAddress: true);
     }
+  }
+
+  String greeting() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Breakfast time';
+    }
+    if (hour < 17) {
+      return '''It's lunch time''';
+    }
+    return 'Dinner time';
   }
 
   @override
@@ -269,7 +276,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           color: Colors.pink,
                                           child: Row(children: <Widget>[
                                         //removed back ios button in the appBar
-                                        *//*(splashController.module != null &&
+                                        */ /*(splashController.module != null &&
                                                 splashController
                                                         .configModel.module ==
                                                     null)
@@ -281,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   color: Colors.black,
                                                 ) //Image.asset(Images.module_icon, height: 22, width: 22, color: Colors.yellow),
                                                 )
-                                            : SizedBox(),*//*
+                                            : SizedBox(),*/ /*
                                         Column(
                                             mainAxisAlignment: MainAxisAlignment.end,
                                             children: <Widget>[
@@ -314,13 +321,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         MainAxisAlignment.start,
                                                     children: [
                                                       const SizedBox(width: 10,),
-                                                      *//* Image.asset(
+                                                      */ /* Image.asset(
                                                     "assets/image/navigator.png",
                                                     height: 20,
                                                     width: 20,
                                                     color: Colors.black,
-                                                  ),*//*
-                                                      *//*Icon(
+                                                  ),*/ /*
+                                                      */ /*Icon(
                                                 locationController
                                                     .getUserAddress()
                                                     .addressType ==
@@ -334,12 +341,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     : Icons.location_on,
                                                 size: 30,
                                                 color: Colors.red,
-                                              ),*//*
-                                                     *//* Image.asset(
+                                              ),*/ /*
+                                                     */ /* Image.asset(
                                                         "assets/image/location_icon.png",
                                                         width: 40,
                                                         height: 40,
-                                                      ),*//*
+                                                      ),*/ /*
                                                       Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -433,7 +440,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                                       //profile image here
 
-                                                      *//* InkWell(
+                                                      */ /* InkWell(
                                                 onTap: () => null,
                                                 child: GetBuilder<
                                                     UserController>(
@@ -469,7 +476,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             .center,
                                                         child: ClipOval(
                                                             child: const SizedBox()
-                                                          *//* *//*CustomImage(
+                                                          */ /* */ /*CustomImage(
                                                               image:
                                                               '${Get
                                                                   .find<
@@ -489,10 +496,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               width: 40,
                                                               fit: BoxFit
                                                                   .cover,
-                                                            )*//* *//*),
+                                                            )*/ /* */ /*),
                                                       );
                                                     }),
-                                              )*//*
+                                              )*/ /*
                                                     ],
                                                   );
                                                 }),
@@ -504,250 +511,323 @@ class _HomeScreenState extends State<HomeScreen> {
                                       //actions: [SizedBox()],
                                       ),*/
 
-
-                                  SliverPersistentHeader(
-                                    pinned: false,
-                                    delegate: SliverDelegate(child: Container(
-                                        height: 254,
-                                        alignment: Alignment.bottomCenter,
-                                        color: Colors.pink,
-                                        child: Row(children: <Widget>[
-                                          //removed back ios button in the appBar
-                                          /*(splashController.module != null &&
-                                                splashController
-                                                        .configModel.module ==
-                                                    null)
-                                            ? InkWell(
-                                                onTap: () => splashController
-                                                    .removeModule(),
-                                                child: Icon(
-                                                  Icons.arrow_back_ios_new,
-                                                  color: Colors.black,
-                                                ) //Image.asset(Images.module_icon, height: 22, width: 22, color: Colors.yellow),
-                                                )
-                                            : SizedBox(),*/
-                                          Column(
-                                              mainAxisAlignment: MainAxisAlignment.end,
-                                              children: <Widget>[
+                                  SliverToBoxAdapter(
+                                      child: _showMobileModule
+                                          ? Container(
+                                              decoration: BoxDecoration(
+                                                  gradient: LinearGradient(
+                                                      colors: [
+                                                    Colors.green
+                                                        .withOpacity(0.3),
+                                                    Colors.white
+                                                  ],
+                                                      begin:
+                                                          Alignment.topCenter,
+                                                      end: Alignment
+                                                          .bottomCenter)),
+                                              height:
+                                                  _showMobileModule ? 200 : 80,
+                                              //color: Colors.pink,
+                                              child: Column(children: <Widget>[
                                                 const SizedBox(
-                                                  height: 30,
+                                                  height: 10,
                                                 ),
-                                                InkWell(
-                                                  onTap: () => Get.toNamed(RouteHelper
-                                                      .getAccessLocationRoute(
-                                                      'home')),
-                                                  child: InkWell(
-                                                    onTap: () => Get.toNamed(
-                                                        RouteHelper
-                                                            .getAccessLocationRoute(
-                                                            'home')),
-                                                    child: Padding(
-                                                      padding: EdgeInsets.symmetric(
-                                                        vertical: Dimensions
-                                                            .PADDING_SIZE_SMALL,
-                                                      ),
-                                                      child: GetBuilder<
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    vertical: Dimensions
+                                                        .PADDING_SIZE_SMALL,
+                                                  ),
+                                                  child: GetBuilder<
                                                           LocationController>(
-                                                          builder:
-                                                              (locationController) {
-                                                            return Row(
-                                                              crossAxisAlignment:
+                                                      builder:
+                                                          (locationController) {
+                                                    return Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        /* Image.asset(
+                                              "assets/image/navigator.png",
+                                              height: 20,
+                                              width: 20,
+                                              color: Colors.black,
+                                            ),*/
+                                                        /*Icon(
+                                            locationController
+                                              .getUserAddress()
+                                              .addressType ==
+                                              'home'
+                                              ? Icons.home_filled
+                                              : locationController
+                                              .getUserAddress()
+                                              .addressType ==
+                                              'office'
+                                              ? Icons.work
+                                              : Icons.location_on,
+                                            size: 30,
+                                            color: Colors.red,
+                                            ),*/
+                                                        /* Image.asset(
+                                                  "assets/image/location_icon.png",
+                                                  width: 40,
+                                                  height: 40,
+                                                ),*/
+                                                        Column(
+                                                          crossAxisAlignment:
                                                               CrossAxisAlignment
-                                                                  .center,
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment.start,
-                                                              children: [
-                                                                const SizedBox(width: 10,),
-                                                                /* Image.asset(
-                                                    "assets/image/navigator.png",
-                                                    height: 20,
-                                                    width: 20,
-                                                    color: Colors.black,
-                                                  ),*/
-                                                                /*Icon(
-                                                locationController
-                                                    .getUserAddress()
-                                                    .addressType ==
-                                                    'home'
-                                                    ? Icons.home_filled
-                                                    : locationController
-                                                    .getUserAddress()
-                                                    .addressType ==
-                                                    'office'
-                                                    ? Icons.work
-                                                    : Icons.location_on,
-                                                size: 30,
-                                                color: Colors.red,
-                                              ),*/
-                                                                /* Image.asset(
-                                                        "assets/image/location_icon.png",
-                                                        width: 40,
+                                                                  .start,
+                                                          children: [
+                                                            Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: <
+                                                                    Widget>[
+                                                                  Container(
+                                                                    width: (Get.width /
+                                                                            2) -
+                                                                        10,
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .centerLeft,
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            GetBuilder<UserController>(builder:
+                                                                                (userController) {
+                                                                              return userController.userInfoModel != null ? Text(_isLoggedIn ? '${userController.userInfoModel.fName} ${userController.userInfoModel.lName}' : 'guest'.tr, style: GoogleFonts.poppins(textStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18))) : const SizedBox();
+                                                                            }),
+                                                                            Text(
+                                                                              greeting(),
+                                                                              style: GoogleFonts.poppins(textStyle: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)),
+                                                                              maxLines: 1,
+                                                                              overflow: TextOverflow.ellipsis,
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                        const SizedBox(
+                                                                          width:
+                                                                              10,
+                                                                        ),
+                                                                        Image
+                                                                            .asset(
+                                                                          "assets/image/waving_hand.png",
+                                                                          height:
+                                                                              40,
+                                                                          width:
+                                                                              30,
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  ),
+
+                                                                  //onTap: () => Get.toNamed(RouteHelper.getAccessLocationRoute('home'))
+
+                                                                  /* Container(
+                                                                width: Get.width /
+                                                                        2 -
+                                                                    10,
+                                                                alignment:
+                                                                    Alignment
+                                                                        .centerRight,
+                                                                child: GetBuilder<
+                                                                        GpsController>(
+                                                                    init:
+                                                                        GpsController(),
+                                                                    builder:
+                                                                        (gpsController) {
+                                                                      return InkWell(
+                                                                        onTap: () async => AppSettings.openLocationSettings(),
+                                                                        child: Obx(() => Container(
+                                                                              padding: const EdgeInsets.all(5),
+                                                                              decoration: BoxDecoration(color: gpsController.isLocationEnabled.value ? Colors.green : Colors.red, borderRadius: BorderRadius.circular(8)),
+                                                                              child: Text(
+                                                                                gpsController.isLocationEnabled.value ? "GPS ON" : "GPS is off",
+                                                                                style: TextStyle(
+                                                                                  color: Colors.white,
+                                                                                  fontSize: 12,
+                                                                                ),
+                                                                              ),
+                                                                            )),
+                                                                      );
+                                                                    }),
+                                                              )*/
+                                                                ]),
+                                                          ],
+                                                        ),
+
+                                                        //profile image here
+
+                                                        /* InkWell(
+                                            onTap: () => null,
+                                            child: GetBuilder<
+                                              UserController>(
+                                              builder:
+                                                  (userController) {
+                                                return (_isLoggedIn &&
+                                                    userController
+                                                        .userInfoModel ==
+                                                        null)
+                                                    ? Center(
+                                                    child:
+                                                    CircularProgressIndicator())
+                                                    : Container(
+                                                  decoration:
+                                                  BoxDecoration(
+                                                    // color: Color(0xff1167b1),
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                            "assets/image/appBg.png"),
+                                                        fit: BoxFit
+                                                            .fill),
+                                                    border: Border.all(
+                                                        width: 2,
+                                                        color: Theme
+                                                            .of(
+                                                            context)
+                                                            .cardColor),
+                                                    shape: BoxShape
+                                                        .circle,
+                                                  ),
+                                                  alignment:
+                                                  Alignment
+                                                      .center,
+                                                  child: ClipOval(
+                                                      child: const SizedBox()
+                                                    */ /*CustomImage(
+                                                        image:
+                                                        '${Get
+                                                            .find<
+                                                            SplashController>()
+                                                            .configModel
+                                                            .baseUrls
+                                                            .customerImageUrl}'
+                                                            '/${(userController
+                                                            .userInfoModel !=
+                                                            null &&
+                                                            _isLoggedIn)
+                                                            ? userController
+                                                            .userInfoModel
+                                                            .image
+                                                            : ''}',
                                                         height: 40,
-                                                      ),*/
-                                                                Column(
-                                                                  crossAxisAlignment:
+                                                        width: 40,
+                                                        fit: BoxFit
+                                                            .cover,
+                                                      )*/ /*),
+                                                );
+                                              }),
+                                            )*/
+                                                      ],
+                                                    );
+                                                  }),
+                                                ),
+                                                _showMobileModule
+                                                    ? const SizedBox(
+                                                        height: 30,
+                                                      )
+                                                    : const SizedBox(),
+                                                _showMobileModule
+                                                    ? Container(
+                                                        height: 70,
+                                                        width: Get.width,
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal: 15,
+                                                                vertical: 15),
+                                                        margin: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal: 15),
+                                                        decoration: BoxDecoration(
+                                                            image: DecorationImage(
+                                                                image: AssetImage(
+                                                                    "assets/image/google_map_bg.jpg"),
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                                opacity: 0.8),
+                                                            color: Colors.grey
+                                                                .withOpacity(
+                                                                    0.5),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12)),
+                                                        child: Row(
+                                                          children: [
+                                                            Image.asset(
+                                                                "assets/image/location_icon.png"),
+                                                            Column(
+                                                              crossAxisAlignment:
                                                                   CrossAxisAlignment
                                                                       .start,
-                                                                  children: [
-                                                                    Row(
-                                                                        children: <
-                                                                            Widget>[
-                                                                          SizedBox(
-                                                                            width: 10,
-                                                                          ),
-                                                                          GetBuilder<
-                                                                              UserController>(
-                                                                              builder:
-                                                                                  (userController) {
-                                                                                return userController
-                                                                                    .userInfoModel !=
-                                                                                    null
-                                                                                    ? Text(
-                                                                                    _isLoggedIn
-                                                                                        ? '${userController.userInfoModel.fName} ${userController.userInfoModel.lName}'
-                                                                                        : 'guest'
-                                                                                        .tr,
-                                                                                    style: TextStyle(
-                                                                                        color: Colors.black,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                        fontSize: 18))
-                                                                                    : const SizedBox();
-                                                                              }),
-
-                                                                          SizedBox(
-                                                                              width: 5),
-                                                                          //onTap: () => Get.toNamed(RouteHelper.getAccessLocationRoute('home'))
-
-                                                                          SizedBox(
-                                                                              width: 5),
-                                                                          GetBuilder<
-                                                                              GpsController>(
-                                                                              init:
-                                                                              GpsController(),
-                                                                              builder:
-                                                                                  (gpsController) {
-                                                                                return InkWell(
-                                                                                  onTap: () async =>
-                                                                                      AppSettings.openLocationSettings(),
-                                                                                  child: Obx(() =>
-                                                                                      Container(
-                                                                                        padding: const EdgeInsets.all(5),
-                                                                                        decoration: BoxDecoration(color: gpsController.isLocationEnabled.value ? Colors.green : Colors.red, borderRadius: BorderRadius.circular(8)),
-                                                                                        child: Text(
-                                                                                          gpsController.isLocationEnabled.value ? "GPS ON" : "GPS is off",
-                                                                                          style: TextStyle(
-                                                                                            color: Colors.white,
-                                                                                            fontSize: 12,
-                                                                                          ),
-                                                                                        ),
-                                                                                      )),
-                                                                                );
-                                                                              })
-                                                                        ]),
-                                                                    Row(
-                                                                      children: [
-                                                                        SizedBox(
-                                                                            width: 10),
-                                                                        SizedBox(
-                                                                          width:
-                                                                          Get.width -
-                                                                              90,
-                                                                          child: Text(
-                                                                            locationController
-                                                                                .getUserAddress()
-                                                                                .address,
-                                                                            style: GoogleFonts.montserrat(
-                                                                                textStyle: TextStyle(
-                                                                                    color: Colors
-                                                                                        .black,
-                                                                                    fontSize:
-                                                                                    14,
-                                                                                    fontWeight:
-                                                                                    FontWeight.w500)),
-                                                                            maxLines: 1,
-                                                                            overflow:
-                                                                            TextOverflow
-                                                                                .ellipsis,
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    )
-                                                                  ],
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  "Your delivery address",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black54,
+                                                                      fontSize:
+                                                                          16,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500),
                                                                 ),
-
-                                                                //profile image here
-
-                                                                /* InkWell(
-                                                onTap: () => null,
-                                                child: GetBuilder<
-                                                    UserController>(
-                                                    builder:
-                                                        (userController) {
-                                                      return (_isLoggedIn &&
-                                                          userController
-                                                              .userInfoModel ==
-                                                              null)
-                                                          ? Center(
-                                                          child:
-                                                          CircularProgressIndicator())
-                                                          : Container(
-                                                        decoration:
-                                                        BoxDecoration(
-                                                          // color: Color(0xff1167b1),
-                                                          image: DecorationImage(
-                                                              image: AssetImage(
-                                                                  "assets/image/appBg.png"),
-                                                              fit: BoxFit
-                                                                  .fill),
-                                                          border: Border.all(
-                                                              width: 2,
-                                                              color: Theme
-                                                                  .of(
-                                                                  context)
-                                                                  .cardColor),
-                                                          shape: BoxShape
-                                                              .circle,
-                                                        ),
-                                                        alignment:
-                                                        Alignment
-                                                            .center,
-                                                        child: ClipOval(
-                                                            child: const SizedBox()
-                                                          */ /*CustomImage(
-                                                              image:
-                                                              '${Get
-                                                                  .find<
-                                                                  SplashController>()
-                                                                  .configModel
-                                                                  .baseUrls
-                                                                  .customerImageUrl}'
-                                                                  '/${(userController
-                                                                  .userInfoModel !=
-                                                                  null &&
-                                                                  _isLoggedIn)
-                                                                  ? userController
-                                                                  .userInfoModel
-                                                                  .image
-                                                                  : ''}',
-                                                              height: 40,
-                                                              width: 40,
-                                                              fit: BoxFit
-                                                                  .cover,
-                                                            )*/ /*),
-                                                      );
-                                                    }),
-                                              )*/
+                                                                GetBuilder<
+                                                                        LocationController>(
+                                                                    builder:
+                                                                        (locationController) {
+                                                                  return InkWell(
+                                                                    onTap: () =>
+                                                                        Get.toNamed(
+                                                                            RouteHelper.getAccessLocationRoute('home')),
+                                                                    child:
+                                                                        SizedBox(
+                                                                      width: Get
+                                                                              .width -
+                                                                          150,
+                                                                      child:
+                                                                          Text(
+                                                                        locationController
+                                                                            .getUserAddress()
+                                                                            .address,
+                                                                        style: GoogleFonts.montserrat(
+                                                                            textStyle: TextStyle(
+                                                                                color: Colors.black,
+                                                                                fontSize: 14,
+                                                                                fontWeight: FontWeight.w500)),
+                                                                        maxLines:
+                                                                            1,
+                                                                        overflow:
+                                                                            TextOverflow.ellipsis,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }),
                                                               ],
-                                                            );
-                                                          }),
-                                                    ),
-                                                  ),
-                                                )
-                                              ])
-                                        ]))),
-                                  ),
-
-
+                                                            ),
+                                                            Expanded(
+                                                                child: Icon(Icons
+                                                                    .arrow_forward_ios))
+                                                          ],
+                                                        ),
+                                                      )
+                                                    : const SizedBox()
+                                              ]))
+                                          : const SizedBox()),
                                   // Search Button
                                   !_showMobileModule
                                       ? SliverPersistentHeader(
@@ -755,7 +835,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           delegate: SliverDelegate(
                                               child: Center(
                                                   child: Container(
-                                            height: 50,
+                                            //margin: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                                            height: 80,
                                             width: Dimensions.WEB_MAX_WIDTH,
                                             //  color: Theme.of(context).backgroundColor,
                                             //padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL),
@@ -766,8 +847,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal: 15),
                                                 decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .cardColor,
+                                                  color: Colors.grey.shade200,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           Dimensions
@@ -813,14 +893,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                   SliverToBoxAdapter(
                                     child: Center(
                                         child: Container(
-                                      padding: EdgeInsets.only(bottom: 50),
+                                      padding: EdgeInsets.only(
+                                          bottom: 50, left: 5, right: 5),
                                       decoration: BoxDecoration(
-                                          image: DecorationImage(
+                                        color: Colors.white,
+                                        /*image: DecorationImage(
                                               image: AssetImage(
                                                 Images.app_bg,
                                               ),
                                               scale: 1,
-                                              fit: BoxFit.fill)),
+                                              fit: BoxFit.fill)*/
+                                      ),
                                       width: Dimensions.WEB_MAX_WIDTH,
                                       child: !_showMobileModule
                                           ? Column(

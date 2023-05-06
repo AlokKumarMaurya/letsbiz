@@ -9,7 +9,6 @@ import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/view/base/cart_widget.dart';
 import 'package:sixam_mart/view/base/item_view.dart';
-import 'package:sixam_mart/view/base/menu_drawer.dart';
 import 'package:sixam_mart/view/base/veg_filter_widget.dart';
 import 'package:sixam_mart/view/base/web_menu_bar.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +101,7 @@ class _CategoryItemScreenState extends State<CategoryItemScreen> with TickerProv
           }
         },
         child: Scaffold(
-          backgroundColor:Theme.of(context).cardColor,
+          backgroundColor:Colors.grey.shade100,
           appBar: ResponsiveHelper.isDesktop(context) ? WebMenuBar() : AppBar(
             title: catController.isSearching ? TextField(
               autofocus: true,
@@ -135,7 +134,7 @@ class _CategoryItemScreenState extends State<CategoryItemScreen> with TickerProv
                 }
               },
             ),
-         backgroundColor:Colors.white,
+         backgroundColor:Colors.grey.shade100,
             elevation: 0,
             actions: [
               IconButton(
@@ -153,13 +152,7 @@ class _CategoryItemScreenState extends State<CategoryItemScreen> with TickerProv
           ),
           //endDrawer: MenuDrawer(),
           body: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    "assets/image/appBg.png"
-                  ),
-                  fit: BoxFit.fill
-                )
+              decoration: BoxDecoration(color: Colors.grey.shade100
               ),
               child: SizedBox(
             width: Dimensions.WEB_MAX_WIDTH,

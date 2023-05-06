@@ -11,9 +11,7 @@ class NotLoggedInScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         height: Get.height,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/image/appBg.png"), fit: BoxFit.fill)),
+        decoration: BoxDecoration(color: Colors.white),
         alignment: Alignment.center,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Image.asset(

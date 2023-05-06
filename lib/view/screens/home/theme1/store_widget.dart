@@ -42,18 +42,18 @@ class StoreWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
           color: Theme.of(context).cardColor,
-          /*boxShadow: [BoxShadow(
+          boxShadow: [BoxShadow(
             color: Colors.grey[Get.isDarkMode ? 800 : 300], spreadRadius: 1, blurRadius: 5,
-          )],*/
+          )],
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 
           Stack(children: [
             ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(Dimensions.RADIUS_SMALL)),
+              borderRadius: BorderRadius.all(Radius.circular(15)),
               child: CustomImage(
                 image: '${_baseUrls.storeCoverPhotoUrl}/${store.coverPhoto}',
-                height: context.width * 0.3, width: Dimensions.WEB_MAX_WIDTH, fit: BoxFit.cover,
+                height: context.width * 0.6, width:100, fit: BoxFit.cover,
               )
             ),
             DiscountTag(
@@ -112,7 +112,7 @@ class StoreWidget extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: _desktop ? Dimensions.PADDING_SIZE_SMALL : 0),
                     child: Icon(
                       _isWished ? Icons.favorite : Icons.favorite_border,  size: _desktop ? 30 : 25,
-                      color: _isWished ? Theme.of(context).primaryColor : Theme.of(context).disabledColor,
+                      color: _isWished ? Colors.black : Colors.black,
                     ),
                   ),
                 );

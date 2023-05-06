@@ -7,7 +7,6 @@ import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/data/model/response/order_model.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/util/dimensions.dart';
-import 'package:sixam_mart/view/base/cart_widget.dart';
 import 'package:sixam_mart/view/base/custom_snackbar.dart';
 import 'package:sixam_mart/view/screens/cart/cart_screen.dart';
 import 'package:sixam_mart/view/screens/dashboard/widget/bottom_nav_item.dart';
@@ -243,9 +242,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     BottomNavItem(iconData: Icons.home, isSelected: _pageIndex == 0, onTap: () => _setPage(0)),
                                     /* Expanded(child: SizedBox()),*/
                                     BottomNavItem(iconData: Icons.shopping_bag, isSelected: _pageIndex == 3, onTap: () => _setPage(3)),
-                                    BottomNavItem(iconData: Icons.menu, isSelected: _pageIndex == 4, onTap: () {
+                                    /*BottomNavItem(iconData: Icons.menu, isSelected: _pageIndex == 4, onTap: () {
                                       Get.bottomSheet(MenuScreen(), backgroundColor: Colors.transparent, isScrollControlled: true);
-                                    }),
+                                    }),*/
 
                                     BottomNavItem(iconData: Icons.person_outline_outlined, isSelected: _pageIndex == 5, onTap: ()=>Get.toNamed(RouteHelper.getProfileRoute())),
                                   ]),
