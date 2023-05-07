@@ -108,7 +108,6 @@ class CategoryView extends StatelessWidget {
               ): CategoryAllShimmer(categoryController: categoryController)
             ],
           ),*/
-
                 Row(
                   children: [
                     Expanded(
@@ -148,40 +147,34 @@ class CategoryView extends StatelessWidget {
                                           borderRadius: BorderRadius.circular(
                                               15), /*color: Colors.deepOrange.shade500*/
                                         ),
-                                        child: Stack(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Positioned(
-                                              /*right: -10,
-                                  bottom: -10,*/
-                                              child: Container(
-                                                //alignment: Alignment.bottomRight,
-                                                // height: 110,
-                                                width: double.infinity,
-                                                // margin: EdgeInsets.only(left: 5),
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  child: CustomImage(
-                                                    image:
-                                                        '${Get.find<SplashController>().configModel.baseUrls.categoryImageUrl}/${categoryController.categoryList[index].image}',
-                                                    fit: BoxFit.cover,
-                                                  ),
+                                            Container(
+                                              //alignment: Alignment.bottomRight,
+                                              // height: 110,
+                                              width: double.infinity,
+                                              // margin: EdgeInsets.only(left: 5),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                child: CustomImage(
+                                                  image:
+                                                      '${Get.find<SplashController>().configModel.baseUrls.categoryImageUrl}/${categoryController.categoryList[index].image}',
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ),
-                                            Positioned(
-                                              left: 10,
-                                              bottom: 1,
-                                              child: Text(
-                                                categoryController
-                                                    .categoryList[index].name,
-                                                style: robotoMedium.copyWith(
-                                                    fontSize: 14,
-                                                    color: Colors.black),
-                                                maxLines: 2,
-                                                overflow: TextOverflow.visible,
-                                                textAlign: TextAlign.center,
-                                              ),
+                                            const SizedBox(height: 4,),
+                                            Text(
+                                              categoryController
+                                                  .categoryList[index].name,
+                                              style: robotoMedium.copyWith(
+                                                  fontSize: 14,
+                                                  color: Colors.black),
+                                              maxLines: 2,
+                                              overflow: TextOverflow.visible,
+                                              textAlign: TextAlign.center,
                                             ),
                                           ],
                                         ),

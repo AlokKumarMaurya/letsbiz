@@ -45,11 +45,12 @@ class _CartScreenState extends State<CartScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: 100,
+              height: 80,
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 18.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ResponsiveHelper.isDesktop(context) || !widget.fromNav
                           ? IconButton(
@@ -64,7 +65,7 @@ class _CartScreenState extends State<CartScreen> {
                         child: Text(
                           'my_cart'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold),
                         ),
                       )),
                       SizedBox(

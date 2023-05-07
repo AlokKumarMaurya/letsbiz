@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sixam_mart/controller/order_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
 import 'package:sixam_mart/data/model/response/order_model.dart';
@@ -76,12 +77,12 @@ class OrderView extends StatelessWidget {
                           );
                         },
                         child: Container(
-                          padding: ResponsiveHelper.isDesktop(context) ? EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL) : null,
-                          margin: ResponsiveHelper.isDesktop(context) ? EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_SMALL) : null,
-                          decoration: ResponsiveHelper.isDesktop(context) ? BoxDecoration(
-                            color: Theme.of(context).dividerColor, borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
-                            boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 700 : 300], blurRadius: 5, spreadRadius: 1)],
-                          ) : null,
+                      padding: ResponsiveHelper.isDesktop(context) ? EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL) : EdgeInsets.all(10),
+                          margin: ResponsiveHelper.isDesktop(context) ? EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_SMALL) : EdgeInsets.all(10),
+                          decoration:  BoxDecoration(
+                            color: Colors.white, borderRadius: BorderRadius.circular(12),
+                            boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), blurRadius: 15, spreadRadius: 1)],
+                          ),
                           child: Column(children: [
 
                             Row(children: [
@@ -133,10 +134,10 @@ class OrderView extends StatelessWidget {
                                   Row(children: [
                                     Text(
                                       '${_isParcel ? 'delivery_id'.tr : 'order_id'.tr}:',
-                                      style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall),
+                                      style: GoogleFonts.poppins(fontSize: Dimensions.fontSizeSmall),
                                     ),
                                     SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                                    Text('#${paginatedOrderModel.orders[index].id}', style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall)),
+                                    Text('#${paginatedOrderModel.orders[index].id}', style: GoogleFonts.poppins(fontSize: Dimensions.fontSizeSmall)),
                                   ]),
                                   SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                                   Text(
@@ -183,12 +184,12 @@ class OrderView extends StatelessWidget {
 
                             ]),
 
-                            (index == paginatedOrderModel.orders.length-1 || ResponsiveHelper.isDesktop(context)) ? SizedBox() : Padding(
+                            /*(index == paginatedOrderModel.orders.length-1 || ResponsiveHelper.isDesktop(context)) ? SizedBox() : Padding(
                               padding: EdgeInsets.only(left: 70),
                               child: Divider(
                                 color: Theme.of(context).disabledColor, height: Dimensions.PADDING_SIZE_LARGE,
                               ),
-                            ),
+                            ),*/
 
                           ]),
                         ),

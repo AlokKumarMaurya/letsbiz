@@ -41,7 +41,7 @@ class PopularItemView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 290,
+                  height: 310,
                   child: _itemList != null
                       ? ListView.builder(
                           controller: ScrollController(),
@@ -65,14 +65,14 @@ class PopularItemView extends StatelessWidget {
                                   width: 210,
                                   padding: EdgeInsets.all(
                                       Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                                  margin: EdgeInsets.symmetric(horizontal: 5),
+                                  margin: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     boxShadow: [
                                       BoxShadow(
-                                          color: Colors.grey.withOpacity(0.1),
-                                          blurRadius: 12,
-                                          spreadRadius: 12)
+                                          color: Colors.grey.withOpacity(0.2),
+                                          blurRadius: 15,
+                                          spreadRadius: 1)
                                     ],
                                     borderRadius: BorderRadius.circular(20),
                                     /* boxShadow: [BoxShadow(
@@ -145,7 +145,7 @@ class PopularItemView extends StatelessWidget {
                                                     style: GoogleFonts.poppins(
                                                       fontSize: 14,
                                                       fontWeight:
-                                                          FontWeight.w400,
+                                                          FontWeight.w500,
                                                     ),
                                                     maxLines: 1,
                                                     overflow:
@@ -199,7 +199,7 @@ class PopularItemView extends StatelessWidget {
                                                                   .poppins(
                                                                       fontSize:
                                                                           Dimensions
-                                                                              .fontSizeSmall),
+                                                                              .fontSizeSmall,color: Theme.of(context).primaryColor),
                                                             ),
                                                             SizedBox(
                                                                 width: _itemList[index]

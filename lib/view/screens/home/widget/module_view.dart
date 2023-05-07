@@ -257,7 +257,7 @@ class ModuleView extends StatelessWidget {
       Obx(() {
         debugPrint(temptemp.value);
         return SizedBox(
-          height: 200,
+          height: 220,
           child: GetBuilder<CampaignController>(builder: (bannerController) {
             //List<String> bannerList = false ? bannerController.featuredBannerList : bannerController.bannerImageList;
             //List<dynamic> bannerDataList = false ? bannerController.featuredBannerDataList : bannerController.bannerDataList;
@@ -339,31 +339,32 @@ class ModuleView extends StatelessWidget {
                           },
                           child: Container(
                             margin: index == 0
-                                ? EdgeInsets.only(right: 10, left: 10)
-                                : EdgeInsets.only(right: 10),
+                                ? EdgeInsets.only(right: 10, left: 10,bottom: 10,top: 10)
+                                : EdgeInsets.only(right: 10,bottom: 10,top: 10),
                             width: Get.width / 2.5,
                             decoration: BoxDecoration(
-                              color: Theme.of(context).dividerColor,
-                              // borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.grey
-
-                                    /*[Get.isDarkMode ? 800 : 200]*/
-                                    ,
-                                    spreadRadius: 1,
-                                    blurRadius: 15)
-                              ],
+                                  blurRadius: 15,
+                                  color:Colors.grey.withOpacity(0.1) ,
+                                  spreadRadius:1
+                                )
+                              ]
                             ),
                             child: ClipRRect(
                               // borderRadius: BorderRadius.circular(20),
                               child: GetBuilder<SplashController>(
                                   builder: (splashController) {
-                                return CustomImage(
-                                  width: Get.width / 2.6,
-                                  image: bannerController
-                                      .allCampianList[index].image,
-                                  fit: BoxFit.cover,
+                                return Material(
+                                  elevation: 15,
+                                  shadowColor: Colors.black,
+                                  child: CustomImage(
+                                    width: Get.width / 2.6,
+                                    image: bannerController
+                                        .allCampianList[index].image,
+                                    fit: BoxFit.cover,
+                                  ),
                                 );
                               }),
                             ),

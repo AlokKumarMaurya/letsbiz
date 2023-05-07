@@ -257,8 +257,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ]),
                     ),
                     //actions: [SizedBox()],
-                  ),*/
-                                  /*SliverAppBar(
+                  ),
+                  SliverAppBar(
                                       collapsedHeight: 170,
                                       stretch: true,
                                       floating: true,
@@ -276,7 +276,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           color: Colors.pink,
                                           child: Row(children: <Widget>[
                                         //removed back ios button in the appBar
-                                        */ /*(splashController.module != null &&
+                                        (splashController.module != null &&
                                                 splashController
                                                         .configModel.module ==
                                                     null)
@@ -288,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   color: Colors.black,
                                                 ) //Image.asset(Images.module_icon, height: 22, width: 22, color: Colors.yellow),
                                                 )
-                                            : SizedBox(),*/ /*
+                                            : SizedBox(),
                                         Column(
                                             mainAxisAlignment: MainAxisAlignment.end,
                                             children: <Widget>[
@@ -321,13 +321,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         MainAxisAlignment.start,
                                                     children: [
                                                       const SizedBox(width: 10,),
-                                                      */ /* Image.asset(
+                                                     Image.asset(
                                                     "assets/image/navigator.png",
                                                     height: 20,
                                                     width: 20,
                                                     color: Colors.black,
-                                                  ),*/ /*
-                                                      */ /*Icon(
+                                                  ),Icon(
                                                 locationController
                                                     .getUserAddress()
                                                     .addressType ==
@@ -341,12 +340,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     : Icons.location_on,
                                                 size: 30,
                                                 color: Colors.red,
-                                              ),*/ /*
-                                                     */ /* Image.asset(
+                                              ),Image.asset(
                                                         "assets/image/location_icon.png",
                                                         width: 40,
                                                         height: 40,
-                                                      ),*/ /*
+                                                      ),
                                                       Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -440,7 +438,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                                       //profile image here
 
-                                                      */ /* InkWell(
+                                                      InkWell(
                                                 onTap: () => null,
                                                 child: GetBuilder<
                                                     UserController>(
@@ -476,7 +474,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             .center,
                                                         child: ClipOval(
                                                             child: const SizedBox()
-                                                          */ /* */ /*CustomImage(
+                                                         CustomImage(
                                                               image:
                                                               '${Get
                                                                   .find<
@@ -496,10 +494,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               width: 40,
                                                               fit: BoxFit
                                                                   .cover,
-                                                            )*/ /* */ /*),
+                                                            )),
                                                       );
                                                     }),
-                                              )*/ /*
+                                              )
                                                     ],
                                                   );
                                                 }),
@@ -752,10 +750,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         decoration: BoxDecoration(
                                                             image: DecorationImage(
                                                                 image: AssetImage(
-                                                                    "assets/image/google_map_bg.jpg"),
+                                                                    "assets/image/google_map_bg.jpeg"),
                                                                 fit: BoxFit
                                                                     .cover,
-                                                                opacity: 0.8),
+                                                                opacity: 0.4),
                                                             color: Colors.grey
                                                                 .withOpacity(
                                                                     0.5),
@@ -778,8 +776,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 Text(
                                                                   "Your delivery address",
                                                                   style: TextStyle(
-                                                                      color: Colors
-                                                                          .black54,
+                                                                      color: Colors.black,//Colors.black54,
                                                                       fontSize:
                                                                           16,
                                                                       fontWeight:

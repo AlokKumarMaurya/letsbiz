@@ -231,17 +231,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     //borderRadius: BorderRadius.circular(13),
                                   ),
                                   child: Row(children: [
-                                    BottomNavItem(iconData:  Icons.shopping_cart, isSelected: _pageIndex == 2, onTap: () {
+                                    BottomNavItem(iconData:  Icons.shopping_cart_outlined, isSelected: _pageIndex == 2, onTap: () {
                                       if(Get.find<SplashController>().module != null) {
                                         _setPage(2);
                                       }else{
                                         showCustomSnackBar('please_select_any_module'.tr);
                                       }
                                     }  ),
-                                    BottomNavItem(iconData: Icons.favorite, isSelected: _pageIndex == 1, onTap: () => _setPage(1)),
-                                    BottomNavItem(iconData: Icons.home, isSelected: _pageIndex == 0, onTap: () => _setPage(0)),
+                                    BottomNavItem(iconData: Icons.favorite_outline, isSelected: _pageIndex == 1, onTap: () => _setPage(1)),
+                                    BottomNavItem(iconData: Icons.home_outlined, isSelected: _pageIndex == 0, onTap: () => _setPage(0)),
                                     /* Expanded(child: SizedBox()),*/
-                                    BottomNavItem(iconData: Icons.shopping_bag, isSelected: _pageIndex == 3, onTap: () => _setPage(3)),
+                                    BottomNavItem(iconData: Icons.shopping_bag_outlined, isSelected: _pageIndex == 3, onTap: () => _setPage(3)),
                                     /*BottomNavItem(iconData: Icons.menu, isSelected: _pageIndex == 4, onTap: () {
                                       Get.bottomSheet(MenuScreen(), backgroundColor: Colors.transparent, isScrollControlled: true);
                                     }),*/
