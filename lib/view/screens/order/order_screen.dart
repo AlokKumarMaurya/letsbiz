@@ -34,41 +34,69 @@ class _OrderScreenState extends State<OrderScreen> with TickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'my_orders'.tr, backButton: ResponsiveHelper.isDesktop(context)),
-      endDrawer: MenuDrawer(),
+     // appBar: CustomAppBar(title: 'my_orders'.tr, backButton: ResponsiveHelper.isDesktop(context)),
+      //endDrawer: MenuDrawer(),
       body: _isLoggedIn ? GetBuilder<OrderController>(
         builder: (orderController) {
-          return Column(children: [
-
-            Center(
-              child: Container(
-                width: Dimensions.WEB_MAX_WIDTH,
-               // color: Theme.of(context).dividerColor,
-                child: TabBar(
-                  controller: _tabController,
-                  indicatorColor: Theme.of(context).primaryColor,
-                  indicatorWeight: 3,
-                  labelColor: Theme.of(context).primaryColor,
-                  unselectedLabelColor: Theme.of(context).disabledColor,
-                  unselectedLabelStyle: robotoRegular.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall),
-                  labelStyle: robotoBold.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).primaryColor),
-                  tabs: [
-                    Tab(text: 'running'.tr),
-                    Tab(text: 'history'.tr),
-                  ],
-                ),
-              ),
-            ),
-
-            Expanded(child: TabBarView(
-              controller: _tabController,
+          return Container(
+            height: Get.height,
+            color: Colors.green,
+            child: Column(
               children: [
-                OrderView(isRunning: true),
-                OrderView(isRunning: false),
-              ],
-            )),
+                SizedBox(
+                  height: 80,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 35.0),
+                    child: Text(
+                      "My Orders",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(30),
+                            topLeft: Radius.circular(30))),
+                    child: Column(children: [
 
-          ]);
+                      Center(
+                        child: Container(
+                          width: Dimensions.WEB_MAX_WIDTH,
+                         // color: Theme.of(context).dividerColor,
+                          child: TabBar(
+                            controller: _tabController,
+                            indicatorColor: Theme.of(context).primaryColor,
+                            indicatorWeight: 3,
+                            labelColor: Theme.of(context).primaryColor,
+                            unselectedLabelColor: Theme.of(context).disabledColor,
+                            unselectedLabelStyle: robotoRegular.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall),
+                            labelStyle: robotoBold.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).primaryColor),
+                            tabs: [
+                              Tab(text: 'running'.tr),
+                              Tab(text: 'history'.tr),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      Expanded(child: TabBarView(
+                        controller: _tabController,
+                        children: [
+                          OrderView(isRunning: true),
+                          OrderView(isRunning: false),
+                        ],
+                      )),
+
+                    ]),
+                  ),
+                ),
+              ],
+            ),
+          );
         },
       ) : NotLoggedInScreen(),
     );

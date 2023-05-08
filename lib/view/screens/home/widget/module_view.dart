@@ -58,7 +58,7 @@ class ModuleView extends StatelessWidget {
                         decoration: BoxDecoration(
                             /*color: Colors.primaries[
                                 Random().nextInt(Colors.primaries.length)],*/
-                            borderRadius: BorderRadius.circular(20)),
+                            borderRadius: BorderRadius.circular(15)),
                         child: Stack(
                           //mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -66,7 +66,7 @@ class ModuleView extends StatelessWidget {
                               /* right: 0,
                               bottom: -15,*/
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(15),
                                 child: CustomImage(
                                   image:
                                       '${splashController.configModel.baseUrls.moduleImageUrl}/${splashController.moduleList[index].icon}',

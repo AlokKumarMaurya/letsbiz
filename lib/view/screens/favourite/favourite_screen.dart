@@ -29,48 +29,75 @@ class _FavouriteScreenState extends State<FavouriteScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Theme.of(context).dividerColor,
-      appBar: CustomAppBar(title: 'favourites'.tr, backButton: false),
+      //appBar: CustomAppBar(title: 'Favourites'.tr, backButton: false),
       endDrawer: MenuDrawer(),
       body: Get.find<AuthController>().isLoggedIn()
-          ? SafeArea(
-              child: Column(children: [
-              Container(
-                width: Dimensions.WEB_MAX_WIDTH,
-                // color: Theme.of(context).dividerColor,
-                child: TabBar(
-                  controller: _tabController,
-                  indicatorColor: Theme.of(context).primaryColor,
-                  indicatorWeight: 3,
-                  labelColor: Theme.of(context).primaryColor,
-                  unselectedLabelColor: Theme.of(context).disabledColor,
-                  unselectedLabelStyle: robotoRegular.copyWith(
-                      color: Theme.of(context).disabledColor,
-                      fontSize: Dimensions.fontSizeSmall),
-                  labelStyle: robotoBold.copyWith(
-                      fontSize: Dimensions.fontSizeSmall,
-                      color: Theme.of(context).primaryColor),
-                  tabs: [
-                    Tab(text: 'item'.tr),
-                    Tab(
-                        text: Get.find<SplashController>()
-                                .configModel
-                                .moduleConfig
-                                .module
-                                .showRestaurantText
-                            ? 'restaurants'.tr
-                            : 'stores'.tr),
-                  ],
+          ? Container(
+        color: Colors.green,
+            height: Get.height,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 80,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 35.0),
+                    child: Center(
+                      child: Text("Favorites",  textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              Expanded(
-                  child: TabBarView(
-                controller: _tabController,
-                children: [
-                  FavItemView(isStore: false),
-                  FavItemView(isStore: true),
-                ],
-              )),
-            ]))
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(30),
+                            topLeft: Radius.circular(30))),
+                    child: Column(children: [
+                    Container(
+                      width: Dimensions.WEB_MAX_WIDTH,
+                      // color: Theme.of(context).dividerColor,
+                      child: TabBar(
+                        controller: _tabController,
+                        indicatorColor: Theme.of(context).primaryColor,
+                        indicatorWeight: 3,
+                        labelColor: Theme.of(context).primaryColor,
+                        unselectedLabelColor: Theme.of(context).disabledColor,
+                        unselectedLabelStyle: robotoRegular.copyWith(
+                            color: Theme.of(context).disabledColor,
+                            fontSize: Dimensions.fontSizeSmall),
+                        labelStyle: robotoBold.copyWith(
+                            fontSize: Dimensions.fontSizeSmall,
+                            color: Theme.of(context).primaryColor),
+                        tabs: [
+                          Tab(text: 'item'.tr),
+                          Tab(
+                              text: Get.find<SplashController>()
+                                      .configModel
+                                      .moduleConfig
+                                      .module
+                                      .showRestaurantText
+                                  ? 'restaurants'.tr
+                                  : 'stores'.tr),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                        child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        FavItemView(isStore: false),
+                        FavItemView(isStore: true),
+                      ],
+                    )),
+                      ]),
+                  ),
+                ),
+              ],
+            ),
+          )
           : NotLoggedInScreen(),
     );
   }

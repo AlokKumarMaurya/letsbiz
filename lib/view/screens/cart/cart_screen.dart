@@ -48,7 +48,7 @@ class _CartScreenState extends State<CartScreen> {
               height: 80,
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 18.0),
+                  padding: const EdgeInsets.only(top: 20.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -65,11 +65,11 @@ class _CartScreenState extends State<CartScreen> {
                         child: Text(
                           'my_cart'.tr,
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.w500),
                         ),
                       )),
                       SizedBox(
-                        width: Get.width * 0.1,
+                        //width: Get.width * 0.1,
                       )
                     ],
                   ),
@@ -115,7 +115,7 @@ class _CartScreenState extends State<CartScreen> {
                         ? Column(
                             children: [
                               SizedBox(
-                                height: Get.height * 0.5,
+                                height: Get.height * 0.55,
                                 child: Scrollbar(
                                   child: SingleChildScrollView(
                                     padding: ResponsiveHelper.isDesktop(context)
@@ -249,11 +249,11 @@ class _CartScreenState extends State<CartScreen> {
                                       cartController: cartController,
                                       availableList:
                                           cartController.availableList),
-                              SizedBox(
+                              /*SizedBox(
                                 height: 80,
                                 width: 200,
                                 //color: Colors.pink,
-                              )
+                              )*/
                             ],
                           )
                         : NoDataScreen(

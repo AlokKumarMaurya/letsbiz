@@ -756,7 +756,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 opacity: 0.4),
                                                             color: Colors.grey
                                                                 .withOpacity(
-                                                                    0.5),
+                                                                    0.1),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
@@ -833,54 +833,57 @@ class _HomeScreenState extends State<HomeScreen> {
                                               child: Center(
                                                   child: Container(
                                             //margin: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                                            height: 80,
-                                            width: Dimensions.WEB_MAX_WIDTH,
+                                            height: 140,
+                                            width: Get.width,
+                                                    margin: EdgeInsets.only(top:15,left:15,right:15),
                                             //  color: Theme.of(context).backgroundColor,
                                             //padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL),
                                             child: InkWell(
                                               onTap: () => Get.toNamed(
                                                   RouteHelper.getSearchRoute()),
                                               child: Container(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 15),
+                                                height: 125,
+                                                width: Get.width,
+                                                /*padding: EdgeInsets.symmetric(
+                                                    horizontal: 15),*/
                                                 decoration: BoxDecoration(
                                                   color: Colors.grey.shade200,
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          Dimensions
-                                                              .RADIUS_SMALL),
+                                                  BorderRadius.circular(10),
                                                   //boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 1, blurRadius: 5)],
                                                 ),
-                                                child: Row(children: [
-                                                  Icon(
-                                                    Icons.search,
-                                                    size: 25,
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                  ),
-                                                  SizedBox(
-                                                      width: Dimensions
-                                                          .PADDING_SIZE_EXTRA_SMALL),
-                                                  Expanded(
-                                                      child: Text(
-                                                    Get.find<SplashController>()
-                                                            .configModel
-                                                            .moduleConfig
-                                                            .module
-                                                            .showRestaurantText
-                                                        ? 'search_food_or_restaurant'
-                                                            .tr
-                                                        : 'search_item_or_store'
-                                                            .tr,
-                                                    style:
-                                                        robotoRegular.copyWith(
-                                                      fontSize: Dimensions
-                                                          .fontSizeSmall,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Row(children: [
+                                                    Icon(
+                                                      Icons.search,
+                                                      size: 25,
                                                       color: Theme.of(context)
-                                                          .hintColor,
+                                                          .primaryColor,
                                                     ),
-                                                  )),
-                                                ]),
+                                                    SizedBox(
+                                                        width: Dimensions
+                                                            .PADDING_SIZE_EXTRA_SMALL),
+                                                    Expanded(
+                                                        child: Text(
+                                                      Get.find<SplashController>()
+                                                              .configModel
+                                                              .moduleConfig
+                                                              .module
+                                                              .showRestaurantText
+                                                          ? 'search_food_or_restaurant'
+                                                              .tr
+                                                          : 'search_item_or_store'
+                                                              .tr,
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        fontSize: 15,
+                                                        color: Theme.of(context)
+                                                            .hintColor,
+                                                      ),
+                                                    )),
+                                                  ]),
+                                                ),
                                               ),
                                             ),
                                           ))),

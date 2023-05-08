@@ -108,11 +108,10 @@ class CategoryView extends StatelessWidget {
               ): CategoryAllShimmer(categoryController: categoryController)
             ],
           ),*/
-                Row(
+               /* Row(
                   children: [
                     Expanded(
                       child: SizedBox(
-                        height: 110,
                         child: categoryController.categoryList != null
                             ? GridView.builder(
                                 gridDelegate:
@@ -145,7 +144,7 @@ class CategoryView extends StatelessWidget {
                                         width: Get.width * 0.38,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
-                                              15), /*color: Colors.deepOrange.shade500*/
+                                              15), *//*color: Colors.deepOrange.shade500*//*
                                         ),
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -229,7 +228,87 @@ class CategoryView extends StatelessWidget {
                             : CategoryAllShimmer(
                                 categoryController: categoryController)
                   ],
+                ),*/
+
+                SizedBox(
+                  child: categoryController.categoryList != null
+                      ? GridView.builder(
+                    gridDelegate:
+                    SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      childAspectRatio: 0.8
+                    ),
+                    controller: _scrollController,
+                    itemCount:
+                    categoryController.categoryList.length > 15
+                        ? 15
+                        : categoryController
+                        .categoryList.length,
+                    shrinkWrap: true,
+                    padding: EdgeInsets.only(
+                        left: Dimensions.PADDING_SIZE_SMALL),
+                    physics: NeverScrollableScrollPhysics(),
+                    //scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 10),
+                        child: InkWell(
+                          onTap: () => Get.toNamed(
+                              RouteHelper.getCategoryItemRoute(
+                                categoryController
+                                    .categoryList[index].id,
+                                categoryController
+                                    .categoryList[index].name,
+                              )),
+                          child: Container(
+                            width: Get.width * 0.38,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                  15), /*color: Colors.deepOrange.shade500*/
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  //alignment: Alignment.bottomRight,
+                                  // height: 110,
+                                  width: double.infinity,
+                                  // margin: EdgeInsets.only(left: 5),
+                                  child: ClipRRect(
+                                    borderRadius:
+                                    BorderRadius.circular(15),
+                                    child: CustomImage(
+                                      image:
+                                      '${Get.find<SplashController>().configModel.baseUrls.categoryImageUrl}/${categoryController.categoryList[index].image}',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 4,),
+                                Center(
+                                  child: Text(
+                                    categoryController
+                                        .categoryList[index].name,
+                                    style: robotoMedium.copyWith(
+                                        fontSize: 14,
+                                        color: Colors.black),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.visible,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                      : CategoryShimmer(
+                      categoryController: categoryController),
                 ),
+
               ],
             );
     });

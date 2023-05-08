@@ -63,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-      endDrawer: MenuDrawer(),
+      //endDrawer: MenuDrawer(),
       //backgroundColor: Color(0xff1167b1),
       body: GetBuilder<UserController>(builder: (userController) {
         return (_isLoggedIn && userController.userInfoModel == null)
@@ -74,7 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(
-                        width: 2, color: Theme.of(context).cardColor),
+                        width: 2, color: Colors.white,),
                     shape: BoxShape.circle,
                   ),
                   alignment: Alignment.center,

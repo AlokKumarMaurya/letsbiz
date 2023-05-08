@@ -167,16 +167,28 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
 
 
         SliverToBoxAdapter(
-            child: Container(
-                height: 200,
+            child: !widget.showMobileModule
+                ? Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [
+                          Colors.green
+                              .withOpacity(0.3),
+                          Colors.white
+                        ],
+                        begin:
+                        Alignment.topCenter,
+                        end: Alignment
+                            .bottomCenter)),
+                height:
+                !widget.showMobileModule  ? 200 : 80,
                 //color: Colors.pink,
                 child: Column(children: <Widget>[
                   const SizedBox(
                     height: 10,
                   ),
                   Padding(
-                    padding:
-                    EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                       vertical: Dimensions
                           .PADDING_SIZE_SMALL,
                     ),
@@ -239,32 +251,35 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
                                           alignment:
                                           Alignment
                                               .centerLeft,
-                                          child:
-                                          Row(
+                                          child: Row(
                                             children: [
                                               Column(
                                                 crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                                 children: [
-                                                  GetBuilder<UserController>(builder: (userController) {
-                                                    return userController.userInfoModel != null ? Text(_isLoggedIn ? '${userController.userInfoModel.fName} ${userController.userInfoModel.lName}' : 'guest'.tr, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18)) : const SizedBox();
+                                                  GetBuilder<UserController>(builder:
+                                                      (userController) {
+                                                    return userController.userInfoModel != null ? Text(_isLoggedIn ? '${userController.userInfoModel.fName} ${userController.userInfoModel.lName}' : 'guest'.tr, style: GoogleFonts.poppins(textStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18))) : const SizedBox();
                                                   }),
                                                   Text(
                                                     greeting(),
-                                                    style: GoogleFonts.montserrat(textStyle: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)),
+                                                    style: GoogleFonts.poppins(textStyle: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)),
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
                                                   )
                                                 ],
                                               ),
-                                              const SizedBox(width: 10,),
+                                              const SizedBox(
+                                                width:
+                                                10,
+                                              ),
                                               Image
                                                   .asset(
                                                 "assets/image/waving_hand.png",
                                                 height:
-                                                50,
-                                                width:
                                                 40,
+                                                width:
+                                                30,
                                               )
                                             ],
                                           ),
@@ -272,35 +287,35 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
 
                                         //onTap: () => Get.toNamed(RouteHelper.getAccessLocationRoute('home'))
 
-                                        Container(
-                                          width: Get.width /
-                                              2 -
-                                              10,
-                                          alignment:
-                                          Alignment
-                                              .centerRight,
-                                          child: GetBuilder<
-                                              GpsController>(
-                                              init:
-                                              GpsController(),
-                                              builder:
-                                                  (gpsController) {
-                                                return InkWell(
-                                                  onTap: () async => AppSettings.openLocationSettings(),
-                                                  child: Obx(() => Container(
-                                                    padding: const EdgeInsets.all(5),
-                                                    decoration: BoxDecoration(color: gpsController.isLocationEnabled.value ? Colors.green : Colors.red, borderRadius: BorderRadius.circular(8)),
-                                                    child: Text(
-                                                      gpsController.isLocationEnabled.value ? "GPS ON" : "GPS is off",
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 12,
-                                                      ),
-                                                    ),
-                                                  )),
-                                                );
-                                              }),
-                                        )
+                                        /* Container(
+                                                                width: Get.width /
+                                                                        2 -
+                                                                    10,
+                                                                alignment:
+                                                                    Alignment
+                                                                        .centerRight,
+                                                                child: GetBuilder<
+                                                                        GpsController>(
+                                                                    init:
+                                                                        GpsController(),
+                                                                    builder:
+                                                                        (gpsController) {
+                                                                      return InkWell(
+                                                                        onTap: () async => AppSettings.openLocationSettings(),
+                                                                        child: Obx(() => Container(
+                                                                              padding: const EdgeInsets.all(5),
+                                                                              decoration: BoxDecoration(color: gpsController.isLocationEnabled.value ? Colors.green : Colors.red, borderRadius: BorderRadius.circular(8)),
+                                                                              child: Text(
+                                                                                gpsController.isLocationEnabled.value ? "GPS ON" : "GPS is off",
+                                                                                style: TextStyle(
+                                                                                  color: Colors.white,
+                                                                                  fontSize: 12,
+                                                                                ),
+                                                                              ),
+                                                                            )),
+                                                                      );
+                                                                    }),
+                                                              )*/
                                       ]),
                                 ],
                               ),
@@ -343,8 +358,7 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
                                                       .center,
                                                   child: ClipOval(
                                                       child: const SizedBox()
-                                                    */
-                              /*CustomImage(
+                                                    */ /*CustomImage(
                                                         image:
                                                         '${Get
                                                             .find<
@@ -372,54 +386,102 @@ class _Theme1HomeScreenState extends State<Theme1HomeScreen> {
                           );
                         }),
                   ),
-                  const SizedBox(height: 30,),
-                  Container(
+                  !widget.showMobileModule
+                      ? const SizedBox(
+                    height: 30,
+                  )
+                      : const SizedBox(),
+                  !widget.showMobileModule
+                      ? Container(
                     height: 70,
                     width: Get.width,
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
-                    margin: EdgeInsets.symmetric(horizontal: 15),
+                    alignment: Alignment
+                        .centerLeft,
+                    padding: EdgeInsets
+                        .symmetric(
+                        horizontal: 15,
+                        vertical: 15),
+                    margin: EdgeInsets
+                        .symmetric(
+                        horizontal: 15),
                     decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(12)
-                    ),
+                        image: DecorationImage(
+                            image: AssetImage(
+                                "assets/image/google_map_bg.jpeg"),
+                            fit: BoxFit
+                                .cover,
+                            opacity: 0.4),
+                        color: Colors.grey
+                            .withOpacity(
+                            0.1),
+                        borderRadius:
+                        BorderRadius
+                            .circular(
+                            12)),
                     child: Row(
                       children: [
-                        Image.asset("assets/image/location_icon.png"),
+                        Image.asset(
+                            "assets/image/location_icon.png"),
                         Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment:
+                          CrossAxisAlignment
+                              .start,
+                          mainAxisAlignment:
+                          MainAxisAlignment
+                              .center,
                           children: [
-                            Text("Your delivery address",style: TextStyle(
-                                color: Colors.black54,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500
-                            ),),
+                            Text(
+                              "Your delivery address",
+                              style: TextStyle(
+                                  color: Colors.black,//Colors.black54,
+                                  fontSize:
+                                  16,
+                                  fontWeight:
+                                  FontWeight
+                                      .w500),
+                            ),
                             GetBuilder<
                                 LocationController>(
                                 builder:
                                     (locationController) {
                                   return InkWell(
-                                    onTap: () => Get.toNamed(
-                                        RouteHelper
-                                            .getAccessLocationRoute(
-                                            'home')),
-                                    child:  Text(
-                                      locationController.getUserAddress().address,
-                                      style: GoogleFonts.montserrat(textStyle: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
+                                    onTap: () =>
+                                        Get.toNamed(
+                                            RouteHelper.getAccessLocationRoute('home')),
+                                    child:
+                                    SizedBox(
+                                      width: Get
+                                          .width -
+                                          150,
+                                      child:
+                                      Text(
+                                        locationController
+                                            .getUserAddress()
+                                            .address,
+                                        style: GoogleFonts.montserrat(
+                                            textStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500)),
+                                        maxLines:
+                                        1,
+                                        overflow:
+                                        TextOverflow.ellipsis,
+                                      ),
                                     ),
                                   );
-                                }
-                            ),
+                                }),
                           ],
                         ),
-                        Expanded(child: Icon(Icons.arrow_forward_ios))
+                        Expanded(
+                            child: Icon(Icons
+                                .arrow_forward_ios))
                       ],
                     ),
                   )
-                ]))),
+                      : const SizedBox()
+                ]))
+                : const SizedBox()),
 
 
         // Search Button

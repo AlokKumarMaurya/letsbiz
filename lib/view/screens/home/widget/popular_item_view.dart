@@ -65,7 +65,8 @@ class PopularItemView extends StatelessWidget {
                                   width: 210,
                                   padding: EdgeInsets.all(
                                       Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                                  margin: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 10),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     boxShadow: [
@@ -197,9 +198,14 @@ class PopularItemView extends StatelessWidget {
                                                               ),
                                                               style: GoogleFonts
                                                                   .poppins(
-                                                                      fontSize:
-                                                                          Dimensions
-                                                                              .fontSizeSmall,color: Theme.of(context).primaryColor),
+                                                                fontSize: 15,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
                                                             ),
                                                             SizedBox(
                                                                 width: _itemList[index]
@@ -218,9 +224,7 @@ class PopularItemView extends StatelessWidget {
                                                                             .getStartingPrice(_itemList[index])),
                                                                     style: GoogleFonts
                                                                         .poppins(
-                                                                      fontSize:
-                                                                          Dimensions
-                                                                              .fontSizeExtraSmall,
+                                                                      fontSize:13,
                                                                       color: Theme.of(
                                                                               context)
                                                                           .disabledColor,

@@ -163,12 +163,12 @@ class BannerView extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           color: Theme.of(context).cardColor,
                                           borderRadius:
-                                              BorderRadius.circular(20),
+                                              BorderRadius.circular(15),
                                           // boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 1, blurRadius: 5)],
                                         ),
                                         child: ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(20),
+                                              BorderRadius.circular(15),
                                           child: GetBuilder<SplashController>(
                                               builder: (splashController) {
                                             return CustomImage(
