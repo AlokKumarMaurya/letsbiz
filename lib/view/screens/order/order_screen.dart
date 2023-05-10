@@ -46,7 +46,7 @@ class _OrderScreenState extends State<OrderScreen> with TickerProviderStateMixin
                 SizedBox(
                   height: 80,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 35.0),
+                    padding: const EdgeInsets.only(top: 38.0),
                     child: Text(
                       "My Orders",
                       textAlign: TextAlign.center,

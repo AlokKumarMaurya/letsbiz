@@ -240,8 +240,8 @@ class CategoryView extends StatelessWidget {
                     ),
                     controller: _scrollController,
                     itemCount:
-                    categoryController.categoryList.length > 15
-                        ? 15
+                    categoryController.categoryList.length > 8
+                        ? 8
                         : categoryController
                         .categoryList.length,
                     shrinkWrap: true,

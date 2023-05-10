@@ -64,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
       //endDrawer: MenuDrawer(),
-      //backgroundColor: Color(0xff1167b1),
+      backgroundColor: Colors.white,
       body: GetBuilder<UserController>(builder: (userController) {
         return (_isLoggedIn && userController.userInfoModel == null)
             ? Center(child: CircularProgressIndicator())

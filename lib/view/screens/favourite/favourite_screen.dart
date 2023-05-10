@@ -40,10 +40,10 @@ class _FavouriteScreenState extends State<FavouriteScreen>
                 SizedBox(
                   height: 80,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 35.0),
+                    padding: const EdgeInsets.only(top: 20.0),
                     child: Center(
                       child: Text("Favorites",  textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.w500),
+                        style: TextStyle(color: Colors.white, fontSize: 23,fontWeight: FontWeight.w500),
                       ),
                     ),
                   ),

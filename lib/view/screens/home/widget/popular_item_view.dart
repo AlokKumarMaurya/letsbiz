@@ -41,7 +41,7 @@ class PopularItemView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 310,
+                  height: 320,
                   child: _itemList != null
                       ? ListView.builder(
                           controller: ScrollController(),
@@ -61,12 +61,12 @@ class PopularItemView extends StatelessWidget {
                                       _itemList[index], context);
                                 },
                                 child: Container(
-                                  height: 150,
+                                  height: 160,
                                   width: 210,
                                   padding: EdgeInsets.all(
                                       Dimensions.PADDING_SIZE_EXTRA_SMALL),
                                   margin: EdgeInsets.symmetric(
-                                      horizontal: 5, vertical: 10),
+                                      horizontal: 5, vertical: 15),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     boxShadow: [

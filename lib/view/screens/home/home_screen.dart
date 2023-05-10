@@ -754,9 +754,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 fit: BoxFit
                                                                     .cover,
                                                                 opacity: 0.4),
-                                                            color: Colors.grey
-                                                                .withOpacity(
-                                                                    0.1),
+                                                            color: Colors.white,
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
@@ -827,13 +825,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                           : const SizedBox()),
                                   // Search Button
                                   !_showMobileModule
-                                      ? SliverPersistentHeader(
-                                          pinned: true,
-                                          delegate: SliverDelegate(
+                                      ? SliverToBoxAdapter(
+                                         //pinned: true,
+                                          child: Container(
                                               child: Center(
                                                   child: Container(
                                             //margin: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                                            height: 140,
+                                            height: 55,
                                             width: Get.width,
                                                     margin: EdgeInsets.only(top:15,left:15,right:15),
                                             //  color: Theme.of(context).backgroundColor,
@@ -842,7 +840,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               onTap: () => Get.toNamed(
                                                   RouteHelper.getSearchRoute()),
                                               child: Container(
-                                                height: 125,
+                                                height: 80,
                                                 width: Get.width,
                                                 /*padding: EdgeInsets.symmetric(
                                                     horizontal: 15),*/

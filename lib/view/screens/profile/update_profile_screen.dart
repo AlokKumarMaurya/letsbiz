@@ -50,7 +50,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).cardColor,
       appBar: ResponsiveHelper.isDesktop(context) ? WebMenuBar() : null,
-      endDrawer: MenuDrawer(),
+      //endDrawer: MenuDrawer(),
       body: GetBuilder<UserController>(builder: (userController) {
         if(userController.userInfoModel != null && _phoneController.text.isEmpty) {
           _firstNameController.text = userController.userInfoModel.fName ?? '';
@@ -59,99 +59,110 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
           _emailController.text = userController.userInfoModel.email ?? '';
         }
 
-        return _isLoggedIn ? userController.userInfoModel != null ? ProfileBgWidget(
-          backButton: true,
-          circularImage: ImagePickerWidget(
-            image: '${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${userController.userInfoModel.image}',
-            onTap: () => userController.pickImage(), rawFile: userController.rawFile,
-          ),
-          mainWidget: Column(children: [
+        return _isLoggedIn ? userController.userInfoModel != null ? SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                ProfileBgWidget(
+                  backButton: true,
+                  circularImage: ImagePickerWidget(
+                    image: '${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${userController.userInfoModel.image}',
+                    onTap: () => userController.pickImage(), rawFile: userController.rawFile,
+                  ),
+                  mainWidget: Column(children: [
 
-            Expanded(child: Scrollbar(child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              padding: ResponsiveHelper.isDesktop(context) ? EdgeInsets.zero : EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-              child: Center(child: FooterView(
-                minHeight: 0.45,
-                child: SizedBox(width: Dimensions.WEB_MAX_WIDTH, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Scrollbar(child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      padding: ResponsiveHelper.isDesktop(context) ? EdgeInsets.zero : EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
+                      child: Center(child: SizedBox(width: Dimensions.WEB_MAX_WIDTH, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 
-                  Text(
-                    'first_name'.tr,
-                    style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
-                  ),
-                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                  MyTextField(
-                    hintText: 'first_name'.tr,
-                    controller: _firstNameController,
-                    focusNode: _firstNameFocus,
-                    nextFocus: _lastNameFocus,
-                    inputType: TextInputType.name,
-                    capitalization: TextCapitalization.words,
-                  ),
-                  SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                        Text(
+                          'first_name'.tr,
+                          style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
+                        ),
+                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        MyTextField(
+                          hintText: 'first_name'.tr,
+                          controller: _firstNameController,
+                          focusNode: _firstNameFocus,
+                          nextFocus: _lastNameFocus,
+                          inputType: TextInputType.name,
+                          capitalization: TextCapitalization.words,
+                        ),
+                        SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-                  Text(
-                    'last_name'.tr,
-                    style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
-                  ),
-                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                  MyTextField(
-                    hintText: 'last_name'.tr,
-                    controller: _lastNameController,
-                    focusNode: _lastNameFocus,
-                    nextFocus: _emailFocus,
-                    inputType: TextInputType.name,
-                    capitalization: TextCapitalization.words,
-                  ),
-                  SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                        Text(
+                          'last_name'.tr,
+                          style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
+                        ),
+                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        MyTextField(
+                          hintText: 'last_name'.tr,
+                          controller: _lastNameController,
+                          focusNode: _lastNameFocus,
+                          nextFocus: _emailFocus,
+                          inputType: TextInputType.name,
+                          capitalization: TextCapitalization.words,
+                        ),
+                        SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-                  Text(
-                    'email'.tr,
-                    style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
-                  ),
-                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                  MyTextField(
-                    hintText: 'email'.tr,
-                    controller: _emailController,
-                    focusNode: _emailFocus,
-                    inputAction: TextInputAction.done,
-                    inputType: TextInputType.emailAddress,
-                  ),
-                  SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
+                        Text(
+                          'email'.tr,
+                          style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
+                        ),
+                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        MyTextField(
+                          hintText: 'email'.tr,
+                          controller: _emailController,
+                          focusNode: _emailFocus,
+                          inputAction: TextInputAction.done,
+                          inputType: TextInputType.emailAddress,
+                        ),
+                        SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-                  Row(children: [
-                    Text(
-                      'phone'.tr,
-                      style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
-                    ),
-                    SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                    Text('(${'non_changeable'.tr})', style: robotoRegular.copyWith(
-                      fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).errorColor,
+                        Row(children: [
+                          Text(
+                            'phone'.tr,
+                            style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
+                          ),
+                          SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                          Text('(${'non_changeable'.tr})', style: robotoRegular.copyWith(
+                            fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).errorColor,
+                          )),
+                        ]),
+                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        MyTextField(
+                          hintText: 'phone'.tr,
+                          controller: _phoneController,
+                          focusNode: _phoneFocus,
+                          inputType: TextInputType.phone,
+                          isEnabled: false,
+                        ),
+
+                        //
+                        ResponsiveHelper.isDesktop(context) ? Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: UpdateProfileButton(isLoading: userController.isLoading, onPressed: () {
+                            return _updateProfile(userController);
+                          }),
+                        ) : SizedBox.shrink() ,
+
+                      ]))),
                     )),
+
+                    ResponsiveHelper.isDesktop(context) ? SizedBox.shrink() : Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: UpdateProfileButton(isLoading: userController.isLoading, onPressed: () => _updateProfile(userController)),
+                    ),
+
                   ]),
-                  SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                  MyTextField(
-                    hintText: 'phone'.tr,
-                    controller: _phoneController,
-                    focusNode: _phoneFocus,
-                    inputType: TextInputType.phone,
-                    isEnabled: false,
-                  ),
-
-                  //
-                  ResponsiveHelper.isDesktop(context) ? Padding(
-                    padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_LARGE),
-                    child: UpdateProfileButton(isLoading: userController.isLoading, onPressed: () {
-                      return _updateProfile(userController);
-                    }),
-                  ) : SizedBox.shrink() ,
-
-                ])),
-              )),
-            ))),
-
-            ResponsiveHelper.isDesktop(context) ? SizedBox.shrink() : UpdateProfileButton(isLoading: userController.isLoading, onPressed: () => _updateProfile(userController)),
-
-          ]),
+                ),
+              ],
+            ),
+          ),
         ) : Center(child: CircularProgressIndicator()) : NotLoggedInScreen();
       }),
     );
