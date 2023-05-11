@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sixam_mart/controller/cart_controller.dart';
 import 'package:sixam_mart/controller/coupon_controller.dart';
 import 'package:sixam_mart/controller/splash_controller.dart';
@@ -14,6 +15,8 @@ import 'package:sixam_mart/view/base/menu_drawer.dart';
 import 'package:sixam_mart/view/base/no_data_screen.dart';
 import 'package:sixam_mart/view/base/web_constrained_box.dart';
 import 'package:sixam_mart/view/screens/cart/widget/cart_item_widget.dart';
+
+import '../../../util/app_constants.dart';
 
 class CartScreen extends StatefulWidget {
   final fromNav;
@@ -42,227 +45,298 @@ class _CartScreenState extends State<CartScreen> {
             fit: BoxFit.fill
           )*/
         ),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 80,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ResponsiveHelper.isDesktop(context) || !widget.fromNav
-                          ? IconButton(
-                              onPressed: () => Get.back(),
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                                color: Colors.white,
-                              ))
-                          : const SizedBox(),
-                      Expanded(
-                          child: Center(
-                        child: Text(
-                          'my_cart'.tr,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.w500),
-                        ),
-                      )),
-                      SizedBox(
-                        //width: Get.width * 0.1,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30),
-                        topLeft: Radius.circular(30))),
-                child: GetBuilder<CartController>(
-                  builder: (cartController) {
-                    // List<List<AddOns>> _addOnsList = [];
-                    // List<bool> _availableList = [];
-                    // double _itemPrice = 0;
-                    // double _addOns = 0;
-                    // cartController.cartList.forEach((cartModel) {
-                    //
-                    //   List<AddOns> _addOnList = [];
-                    //   cartModel.addOnIds.forEach((addOnId) {
-                    //     for(AddOns addOns in cartModel.item.addOns) {
-                    //       if(addOns.id == addOnId.id) {
-                    //         _addOnList.add(addOns);
-                    //         break;
-                    //       }
-                    //     }
-                    //   });
-                    //   _addOnsList.add(_addOnList);
-                    //
-                    //   _availableList.add(DateConverter.isAvailable(cartModel.item.availableTimeStarts, cartModel.item.availableTimeEnds));
-                    //
-                    //   for(int index=0; index<_addOnList.length; index++) {
-                    //     _addOns = _addOns + (_addOnList[index].price * cartModel.addOnIds[index].quantity);
-                    //   }
-                    //   _itemPrice = _itemPrice + (cartModel.price * cartModel.quantity);
-                    // });
-                    // double _subTotal = _itemPrice + _addOns;
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 320,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 20,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ResponsiveHelper.isDesktop(context) || !widget.fromNav
+                                ? IconButton(
+                                    onPressed: () => Get.back(),
+                                    icon: Icon(
+                                      Icons.arrow_back_ios,
+                                      color: Colors.white,
+                                    ))
+                                : const SizedBox(),
+                            Expanded(
+                                child: Container(
+                                  alignment: Alignment.center,
+                              child: Text(
+                                "Your Cart",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.w500),
+                              ),
+                            )),
 
-                    return cartController.cartList.length > 0
-                        ? Column(
+                          ],
+                        ),
+                        const SizedBox(height: 30,),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Column(
                             children: [
+                              Text("Benefits with ${AppConstants.APP_NAME}",style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22
+                                )
+                              ),),
                               SizedBox(
-                                height: Get.height * 0.55,
-                                child: Scrollbar(
-                                  child: SingleChildScrollView(
-                                    padding: ResponsiveHelper.isDesktop(context)
-                                        ? EdgeInsets.only(
-                                            top: Dimensions.PADDING_SIZE_SMALL,
-                                          )
-                                        : EdgeInsets.all(
-                                            Dimensions.PADDING_SIZE_SMALL),
-                                    physics: AlwaysScrollableScrollPhysics(),
-                                    child: SizedBox(
-                                      height: Get.height * 0.5,
-                                      width: Dimensions.WEB_MAX_WIDTH,
-                                      child: WebConstrainedBox(
-                                        dataLength:
-                                            cartController.cartList.length,
-                                        minLength: 5,
-                                        minHeight: 0.6,
-                                        child: ListView.builder(
-                                          physics:
-                                              NeverScrollableScrollPhysics(),
-                                          shrinkWrap: true,
-                                          itemCount:
-                                              cartController.cartList.length,
-                                          itemBuilder: (context, index) {
-                                            return CartItemWidget(
-                                                cart: cartController
-                                                    .cartList[index],
-                                                cartIndex: index,
-                                                addOns: cartController
-                                                    .addOnsList[index],
-                                                isAvailable: cartController
-                                                    .availableList[index]);
-                                          },
-                                        ),
+                                height: 2,
+                                child: Center(
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: Get.width~/5,
+                                    itemBuilder: (context, index) => Container(
+                                      height: 1,
+                                      width: 5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: index.isEven?Colors.white:Colors.transparent
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    // Total
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text('item_price'.tr,
-                                              style: robotoRegular),
-                                          Text(
-                                              PriceConverter.convertPrice(
-                                                  cartController.itemPrice),
-                                              style: robotoRegular),
-                                        ]),
-                                    SizedBox(
-                                        height: Get.find<SplashController>()
-                                                .configModel
-                                                .moduleConfig
-                                                .module
-                                                .addOn
-                                            ? 10
-                                            : 0),
-
-                                    Get.find<SplashController>()
-                                            .configModel
-                                            .moduleConfig
-                                            .module
-                                            .addOn
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text('addons'.tr,
-                                                  style: robotoRegular),
-                                              Text(
-                                                  '(+) ${PriceConverter.convertPrice(cartController.addOns)}',
-                                                  style: robotoRegular),
-                                            ],
-                                          )
-                                        : SizedBox(),
-
-                                    Get.find<SplashController>()
-                                            .configModel
-                                            .moduleConfig
-                                            .module
-                                            .addOn
-                                        ? Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: Dimensions
-                                                    .PADDING_SIZE_SMALL),
-                                            child: Divider(
-                                                thickness: 1,
-                                                color: Theme.of(context)
-                                                    .hintColor
-                                                    .withOpacity(0.5)),
-                                          )
-                                        : SizedBox(),
-
-                                    Get.find<SplashController>()
-                                            .configModel
-                                            .moduleConfig
-                                            .module
-                                            .addOn
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text('subtotal'.tr,
-                                                  style: robotoMedium),
-                                              Text(
-                                                  PriceConverter.convertPrice(
-                                                      cartController.subTotal),
-                                                  style: robotoMedium),
-                                            ],
-                                          )
-                                        : SizedBox(),
-
-                                    ResponsiveHelper.isDesktop(context)
-                                        ? CheckoutButton(
-                                            cartController: cartController,
-                                            availableList:
-                                                cartController.availableList)
-                                        : SizedBox.shrink(),
-                                  ],
-                                ),
+                              const SizedBox(height: 10,),
+                              Row(
+                                children: [
+                                  Icon(Icons.done_outline_outlined,color: Colors.black,size: 20,),
+                                  const SizedBox(width: 10,),
+                                  Text("Feel good about this order.\nIt's 100% Local",style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black,
+                                    )
+                                  ),)
+                                ],
                               ),
-                              ResponsiveHelper.isDesktop(context)
-                                  ? SizedBox.shrink()
-                                  : CheckoutButton(
-                                      cartController: cartController,
-                                      availableList:
-                                          cartController.availableList),
-                              /*SizedBox(
-                                height: 80,
-                                width: 200,
-                                //color: Colors.pink,
-                              )*/
+
+                              const SizedBox(height: 10,),
+                              Row(
+                                children: [
+                                  Icon(Icons.done_outline_outlined,color: Colors.black,size: 20,),
+                                  const SizedBox(width: 10,),
+                                  Text("We take no commission from \nsellers.",style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                      )
+                                  ),)
+                                ],
+                              ),
+
+                              const SizedBox(height: 10,),
+                              Row(
+                                children: [
+                                  Icon(Icons.done_outline_outlined,color: Colors.black,size: 20,),
+                                  const SizedBox(width: 10,),
+                                  Text("100% Returns Guaranteed*",style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                      )
+                                  ),)
+                                ],
+                              ),
                             ],
-                          )
-                        : NoDataScreen(
-                            isCart: true, text: '', showFooter: true);
-                  },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                Container(
+                  padding: EdgeInsets.only(left: 20,right: 20),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(30),
+                          topLeft: Radius.circular(30))),
+                  child: GetBuilder<CartController>(
+                    builder: (cartController) {
+                      // List<List<AddOns>> _addOnsList = [];
+                      // List<bool> _availableList = [];
+                      // double _itemPrice = 0;
+                      // double _addOns = 0;
+                      // cartController.cartList.forEach((cartModel) {
+                      //
+                      //   List<AddOns> _addOnList = [];
+                      //   cartModel.addOnIds.forEach((addOnId) {
+                      //     for(AddOns addOns in cartModel.item.addOns) {
+                      //       if(addOns.id == addOnId.id) {
+                      //         _addOnList.add(addOns);
+                      //         break;
+                      //       }
+                      //     }
+                      //   });
+                      //   _addOnsList.add(_addOnList);
+                      //
+                      //   _availableList.add(DateConverter.isAvailable(cartModel.item.availableTimeStarts, cartModel.item.availableTimeEnds));
+                      //
+                      //   for(int index=0; index<_addOnList.length; index++) {
+                      //     _addOns = _addOns + (_addOnList[index].price * cartModel.addOnIds[index].quantity);
+                      //   }
+                      //   _itemPrice = _itemPrice + (cartModel.price * cartModel.quantity);
+                      // });
+                      // double _subTotal = _itemPrice + _addOns;
+
+                      return cartController.cartList.length > 0
+                          ? Column(
+                              children: [
+                                SizedBox(
+                                  height: Get.height * 0.55,
+                                  child: SizedBox(
+                                    height: Get.height * 0.5,
+                                    width: Dimensions.WEB_MAX_WIDTH,
+                                    child: WebConstrainedBox(
+                                      dataLength:
+                                          cartController.cartList.length,
+                                      minLength: 5,
+                                      minHeight: 0.6,
+                                      child: ListView.builder(
+                                        physics:
+                                            NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount:
+                                            cartController.cartList.length,
+                                        itemBuilder: (context, index) {
+                                          return CartItemWidget(
+                                              cart: cartController
+                                                  .cartList[index],
+                                              cartIndex: index,
+                                              addOns: cartController
+                                                  .addOnsList[index],
+                                              isAvailable: cartController
+                                                  .availableList[index]);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      // Total
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('item_price'.tr,
+                                                style: robotoRegular),
+                                            Text(
+                                                PriceConverter.convertPrice(
+                                                    cartController.itemPrice),
+                                                style: robotoRegular),
+                                          ]),
+                                      SizedBox(
+                                          height: Get.find<SplashController>()
+                                                  .configModel
+                                                  .moduleConfig
+                                                  .module
+                                                  .addOn
+                                              ? 10
+                                              : 0),
+
+                                      Get.find<SplashController>()
+                                              .configModel
+                                              .moduleConfig
+                                              .module
+                                              .addOn
+                                          ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text('addons'.tr,
+                                                    style: robotoRegular),
+                                                Text(
+                                                    '(+) ${PriceConverter.convertPrice(cartController.addOns)}',
+                                                    style: robotoRegular),
+                                              ],
+                                            )
+                                          : SizedBox(),
+
+                                      Get.find<SplashController>()
+                                              .configModel
+                                              .moduleConfig
+                                              .module
+                                              .addOn
+                                          ? Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: Dimensions
+                                                      .PADDING_SIZE_SMALL),
+                                              child: Divider(
+                                                  thickness: 1,
+                                                  color: Theme.of(context)
+                                                      .hintColor
+                                                      .withOpacity(0.5)),
+                                            )
+                                          : SizedBox(),
+
+                                      Get.find<SplashController>()
+                                              .configModel
+                                              .moduleConfig
+                                              .module
+                                              .addOn
+                                          ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text('subtotal'.tr,
+                                                    style: robotoMedium),
+                                                Text(
+                                                    PriceConverter.convertPrice(
+                                                        cartController.subTotal),
+                                                    style: robotoMedium),
+                                              ],
+                                            )
+                                          : SizedBox(),
+
+                                      ResponsiveHelper.isDesktop(context)
+                                          ? CheckoutButton(
+                                              cartController: cartController,
+                                              availableList:
+                                                  cartController.availableList)
+                                          : SizedBox.shrink(),
+                                    ],
+                                  ),
+                                ),
+                                ResponsiveHelper.isDesktop(context)
+                                    ? SizedBox.shrink()
+                                    : CheckoutButton(
+                                        cartController: cartController,
+                                        availableList:
+                                            cartController.availableList),
+                                SizedBox(
+                                  height: 80,
+                                  width: 200,
+                                  //color: Colors.pink,
+                                )
+                              ],
+                            )
+                          : NoDataScreen(
+                              isCart: true, text: '', showFooter: true);
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

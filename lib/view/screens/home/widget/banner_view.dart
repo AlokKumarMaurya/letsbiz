@@ -47,13 +47,13 @@ class BannerView extends StatelessWidget {
                         SizedBox(
                           height: GetPlatform.isDesktop
                               ? 500
-                              : MediaQuery.of(context).size.width * 0.60,
+                              : MediaQuery.of(context).size.width * 0.55,
                           child: CarouselSlider.builder(
                             options: CarouselOptions(
                               autoPlay: true,
                               enlargeCenterPage: true,
                               disableCenter: true,
-                              viewportFraction: 0.95,
+                              viewportFraction: 0.85,
                               autoPlayInterval: Duration(seconds: 7),
                               onPageChanged: (index, reason) {
                                 bannerController.setCurrentIndex(index, true);

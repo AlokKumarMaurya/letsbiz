@@ -576,91 +576,98 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   width: 40,
                                                   height: 40,
                                                 ),*/
-                                                        Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: <
-                                                                    Widget>[
-                                                                  Container(
-                                                                    width: (Get.width /
-                                                                            2) -
-                                                                        10,
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .centerLeft,
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            GetBuilder<UserController>(builder:
-                                                                                (userController) {
-                                                                              return userController.userInfoModel != null ? Text(_isLoggedIn ? '${userController.userInfoModel.fName} ${userController.userInfoModel.lName}' : 'guest'.tr, style: GoogleFonts.poppins(textStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18))) : const SizedBox();
-                                                                            }),
-                                                                            Text(
-                                                                              greeting(),
-                                                                              style: GoogleFonts.poppins(textStyle: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)),
-                                                                              maxLines: 1,
-                                                                              overflow: TextOverflow.ellipsis,
+                                                        Container(
+                                                          width: Get.width*0.95,
+                                                          child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: <
+                                                                  Widget>[
+                                                                Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment.start,
+                                                                  children: [
+                                                                    GetBuilder<UserController>(builder:
+                                                                        (userController) {
+                                                                      //${userController.userInfoModel.lName}
+                                                                      return userController.userInfoModel != null
+                                                                          ? Row(
+                                                                              children: [
+                                                                                Text(_isLoggedIn ? 'Hi , ${userController.userInfoModel.fName} ' : 'guest'.tr, style: GoogleFonts.poppins(textStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18))),
+                                                                                const SizedBox(
+                                                                                  width: 5,
+                                                                                ),
+                                                                                Image.asset(
+                                                                                  "assets/image/waving_hand.png",
+                                                                                  height: 30,
+                                                                                  width: 30,
+                                                                                )
+                                                                              ],
                                                                             )
-                                                                          ],
-                                                                        ),
-                                                                        const SizedBox(
-                                                                          width:
-                                                                              10,
-                                                                        ),
-                                                                        Image
-                                                                            .asset(
-                                                                          "assets/image/waving_hand.png",
-                                                                          height:
-                                                                              40,
-                                                                          width:
-                                                                              30,
-                                                                        )
-                                                                      ],
+                                                                          : const SizedBox();
+                                                                    }),
+                                                                    Text(
+                                                                      "Let's order locally",
+                                                                      //greeting(),
+                                                                      style: GoogleFonts.poppins(textStyle: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500)),
+                                                                      maxLines: 1,
+                                                                      overflow: TextOverflow.ellipsis,
+                                                                    )
+                                                                  ],
+                                                                ),
+
+
+                                                                Expanded(
+                                                                  child: Container(
+                                                                    alignment: Alignment.centerRight,
+                                                                    child: Text(
+                                                                      "Deliver in \n8 minute",
+                                                                      style: GoogleFonts.poppins(
+                                                                          textStyle: TextStyle(
+                                                                            color:
+                                                                            Colors.black,
+                                                                            fontSize:
+                                                                            18,
+                                                                            fontWeight:
+                                                                            FontWeight.w700,
+                                                                          )),
                                                                     ),
                                                                   ),
+                                                                ),
 
-                                                                  //onTap: () => Get.toNamed(RouteHelper.getAccessLocationRoute('home'))
+                                                                //onTap: () => Get.toNamed(RouteHelper.getAccessLocationRoute('home'))
 
-                                                                  /* Container(
-                                                                width: Get.width /
-                                                                        2 -
-                                                                    10,
-                                                                alignment:
-                                                                    Alignment
-                                                                        .centerRight,
-                                                                child: GetBuilder<
-                                                                        GpsController>(
-                                                                    init:
-                                                                        GpsController(),
-                                                                    builder:
-                                                                        (gpsController) {
-                                                                      return InkWell(
-                                                                        onTap: () async => AppSettings.openLocationSettings(),
-                                                                        child: Obx(() => Container(
-                                                                              padding: const EdgeInsets.all(5),
-                                                                              decoration: BoxDecoration(color: gpsController.isLocationEnabled.value ? Colors.green : Colors.red, borderRadius: BorderRadius.circular(8)),
-                                                                              child: Text(
-                                                                                gpsController.isLocationEnabled.value ? "GPS ON" : "GPS is off",
-                                                                                style: TextStyle(
-                                                                                  color: Colors.white,
-                                                                                  fontSize: 12,
-                                                                                ),
+                                                                /* Container(
+                                                              width: Get.width /
+                                                                      2 -
+                                                                  10,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .centerRight,
+                                                              child: GetBuilder<
+                                                                      GpsController>(
+                                                                  init:
+                                                                      GpsController(),
+                                                                  builder:
+                                                                      (gpsController) {
+                                                                    return InkWell(
+                                                                      onTap: () async => AppSettings.openLocationSettings(),
+                                                                      child: Obx(() => Container(
+                                                                            padding: const EdgeInsets.all(5),
+                                                                            decoration: BoxDecoration(color: gpsController.isLocationEnabled.value ? Colors.green : Colors.red, borderRadius: BorderRadius.circular(8)),
+                                                                            child: Text(
+                                                                              gpsController.isLocationEnabled.value ? "GPS ON" : "GPS is off",
+                                                                              style: TextStyle(
+                                                                                color: Colors.white,
+                                                                                fontSize: 12,
                                                                               ),
-                                                                            )),
-                                                                      );
-                                                                    }),
-                                                              )*/
-                                                                ]),
-                                                          ],
+                                                                            ),
+                                                                          )),
+                                                                    );
+                                                                  }),
+                                                            )*/
+                                                              ]),
                                                         ),
 
                                                         //profile image here
@@ -731,7 +738,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ),
                                                 _showMobileModule
                                                     ? const SizedBox(
-                                                        height: 30,
+                                                        height: 10,
                                                       )
                                                     : const SizedBox(),
                                                 _showMobileModule
@@ -774,12 +781,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 Text(
                                                                   "Your delivery address",
                                                                   style: TextStyle(
-                                                                      color: Colors.black,//Colors.black54,
-                                                                      fontSize:
-                                                                          16,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500),
+                                                                      color: Colors.black,
+                                                                      //Colors.black54,
+                                                                      fontSize: 16,
+                                                                      fontWeight: FontWeight.w500),
                                                                 ),
                                                                 GetBuilder<
                                                                         LocationController>(
@@ -826,14 +831,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                   // Search Button
                                   !_showMobileModule
                                       ? SliverToBoxAdapter(
-                                         //pinned: true,
+                                          //pinned: true,
                                           child: Container(
                                               child: Center(
                                                   child: Container(
                                             //margin: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
                                             height: 55,
                                             width: Get.width,
-                                                    margin: EdgeInsets.only(top:15,left:15,right:15),
+                                            margin: EdgeInsets.only(
+                                                top: 15, left: 15, right: 15),
                                             //  color: Theme.of(context).backgroundColor,
                                             //padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL),
                                             child: InkWell(
@@ -847,11 +853,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 decoration: BoxDecoration(
                                                   color: Colors.grey.shade200,
                                                   borderRadius:
-                                                  BorderRadius.circular(10),
+                                                      BorderRadius.circular(10),
                                                   //boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 1, blurRadius: 5)],
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
                                                   child: Row(children: [
                                                     Icon(
                                                       Icons.search,
@@ -862,24 +869,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     SizedBox(
                                                         width: Dimensions
                                                             .PADDING_SIZE_EXTRA_SMALL),
-                                                    Expanded(
-                                                        child: Text(
-                                                      Get.find<SplashController>()
-                                                              .configModel
-                                                              .moduleConfig
-                                                              .module
-                                                              .showRestaurantText
-                                                          ? 'search_food_or_restaurant'
-                                                              .tr
-                                                          : 'search_item_or_store'
-                                                              .tr,
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                        fontSize: 15,
-                                                        color: Theme.of(context)
-                                                            .hintColor,
+                                                    SizedBox(
+                                                      width: Get.width*0.8,
+                                                      child: Text(
+                                                        Get.find<SplashController>()
+                                                            .configModel
+                                                            .moduleConfig
+                                                            .module
+                                                            .showRestaurantText
+                                                        ? 'search_food_or_restaurant'
+                                                            .tr
+                                                        : 'search_item_or_store'
+                                                            .tr,
+                                                        overflow: TextOverflow.ellipsis,
+                                                        style:
+                                                        GoogleFonts.poppins(
+                                                      fontSize: 15,
+                                                      color: Theme.of(context)
+                                                          .hintColor,
+                                                        ),
                                                       ),
-                                                    )),
+                                                    ),
                                                   ]),
                                                 ),
                                               ),
